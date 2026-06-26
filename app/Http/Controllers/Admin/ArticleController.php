@@ -39,7 +39,7 @@ class ArticleController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            'image' => 'required|mimes:jpeg,bmp,png'
         ]);
 
         $input = $request->all();
