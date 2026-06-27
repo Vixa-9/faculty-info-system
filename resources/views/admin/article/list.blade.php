@@ -60,7 +60,7 @@
                 </td>
                 <td>
                     <a href="#" class="btn btn-danger btn-sm"
-                       onclick="removeRow({{ $art->id }}, '/admin/art/destroy')">
+                       onclick="removeRow({{ $art->id }}, '/admin/arts/destroy')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>

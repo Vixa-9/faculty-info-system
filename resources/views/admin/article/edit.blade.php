@@ -55,12 +55,12 @@
                     <label>Featured News</label>
                     <div class="custom-control custom-radio">
                         <input class="custom-control-input" value="1" type="radio" id="hot" name="hot"
-                            {{ $art->active== 1 ? ' checked=""' : '' }}>
+                            {{ $art->hot== 1 ? ' checked=""' : '' }}>
                         <label for="hot" class="custom-control-label">Yes</label>
                     </div>
                     <div class="custom-control custom-radio">
                         <input class="custom-control-input" value="0" type="radio" id="no_hot" name="hot"
-                            {{ $art->active== 0 ? ' checked=""' : '' }}>
+                            {{ $art->hot== 0 ? ' checked=""' : '' }}>
                         <label for="no_hot" class="custom-control-label">No</label>
                     </div>
                 </div>
@@ -84,9 +84,11 @@
 
     </script>
 @endsection
-<script>
-    var loadfile = function(event){
-        var image_show = document.getElementById('image_show');
-        image_show.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
+
+@section('footer')
+    <script>
+        function loadfile(event) {
+            document.getElementById('image_show').src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+@endsection

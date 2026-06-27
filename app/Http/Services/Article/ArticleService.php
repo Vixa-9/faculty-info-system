@@ -18,4 +18,13 @@ class ArticleService
         return Article::with('menu')
             ->orderByDesc('id')->paginate(5);
     }
+
+    public function destroy($request)
+    {
+        $art = Article::find($request->id);
+        if ($art) {
+            return $art->delete();
+        }
+        return false;
+    }
 }
