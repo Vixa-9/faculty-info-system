@@ -55,7 +55,7 @@ class SliderController extends Controller
 
     public function edit($id)
     {
-        //
+        // TODO: à implémenter
     }
 
     public function update(Request $request, Slider $slider)

@@ -8,6 +8,7 @@ use App\Models\Slide;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use App\Http\Services\Slide\SlideService;
+use Illuminate\Support\Str;
 
 class SlideController extends Controller
 {
@@ -37,33 +38,30 @@ class SlideController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->file('image'))
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|mimes:jpeg,bmp,png|max:2048'
+        ]);
+
+        $slide = $request->all();
+
+        if ($request->hasFile('image'))
         {
+            try {
+                $file = $request->file('image');
+                $nameFile = Str::uuid() . '.' . $file->getClientOriginalExtension();
+                $pathFull = '/images/slide/'. date("Y/m/d");
 
-            $request->validate([
-                'name' => 'required',
-                'image' => 'required|mimes:jpeg,bmp,png'
-            ]);
+                $file->move(public_path('images/slide/'). date("Y/m/d"), $nameFile);
 
-            $slide = $request->all();
+                $slide['image'] = $pathFull. '/' . $nameFile;
+                Slide::create($slide);
+                Session::flash('success', 'Thêm Slide mới thành công');
+                return redirect()->back();
 
-            if ($request->hasFile('image'))
-            {
-                try {
-                    $nameFile = $request->file('image')->getClientOriginalName();
-                    $pathFull = '/images/slide/'. date("Y/m/d");
-
-                    $request->file('image')->move(public_path('images/slide/'). date("Y/m/d"), $nameFile);
-
-                    $slide['image'] = $pathFull. '/' . $nameFile;
-                    Slide::create($slide);
-                    Session::flash('success', 'Thêm Slide mới thành công');
-                    return redirect()->back();
-
-                } catch (\Exception $error) {
-                    Session::flash('error', 'Thêm Slide mới không thành công');
-                    return redirect()->back();
-                }
+            } catch (\Exception $error) {
+                Session::flash('error', 'Thêm Slide mới không thành công');
+                return redirect()->back();
             }
         }
     }
@@ -82,19 +80,18 @@ class SlideController extends Controller
         $input = $request->all();
         if ($request->hasFile('image'))
         {
-                $nameFile = $request->file('image')->getClientOriginalName();
-                $pathFull = '/images/slide/'. date("Y/m/d");
+            $file = $request->file('image');
+            $nameFile = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $pathFull = '/images/slide/'. date("Y/m/d");
 
-                $request->file('image')->move(public_path('images/slide/'). date("Y/m/d"), $nameFile);
-                $input['image'] = $pathFull. '/' . $nameFile;
+            $file->move(public_path('images/slide/'). date("Y/m/d"), $nameFile);
+            $input['image'] = $pathFull. '/' . $nameFile;
         }else{
             unset($input['image']);
-
         }
         $slide->update($input);
-        Session::flash('success', 'Thêm Slide mới thành công');
+        Session::flash('success', 'Cập nhật thành công');
         return redirect('/admin/slides/list');
-
     }
 
     public function destroy(Request $request)

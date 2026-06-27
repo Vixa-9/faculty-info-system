@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action =""  method="POST" enctype="multipart/form-data">
+    <form action =""  method="POST" enctype="multipart/form-data" id="articleForm">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -40,7 +40,8 @@
             <div class="form-group">
                 <label for="image">Header image</label>
                 <input type="file" name="image" class="form-control" id="image" onchange="loadfile(event)">
-                <img id="image_show"/ style="width: 200px; height: 100px" alt="image" >
+                <img id="image_show" style="width: 200px; height: 100px" alt="image">
+                <small class="text-muted">Max size: 8 MB. Allowed: jpeg, bmp, png.</small>
             </div>
 
             <div class="form-group">
@@ -74,18 +75,21 @@
 
 @section('footer')
     <script>
-        // Replace the <textarea id="editor1"> with a CKEditor 4
-        // instance, using default configuration.
-        CKEDITOR.replace( 'content',{
+        CKEDITOR.replace('content', {
            enterMode : CKEDITOR.ENTER_BR,
            shiftEnterMode : CKEDITOR.ENTER_P
         });
 
+        function loadfile(event) {
+            document.getElementById('image_show').src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        document.getElementById('articleForm').addEventListener('submit', function(e) {
+            var file = document.getElementById('image').files[0];
+            if (file && file.size > 8 * 1024 * 1024) {
+                e.preventDefault();
+                alert('File too large. Maximum size: 8 MB.');
+            }
+        });
     </script>
 @endsection
-<script>
-    var loadfile = function(event){
-        var image_show = document.getElementById('image_show');
-        image_show.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>

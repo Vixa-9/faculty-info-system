@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Services\Article\ArticleService;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -39,7 +40,7 @@ class ArticleController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|mimes:jpeg,bmp,png'
+            'image' => 'required|mimes:jpeg,bmp,png|max:2048'
         ]);
 
         $input = $request->all();
@@ -47,10 +48,11 @@ class ArticleController extends Controller
         if ($request->hasFile('image'))
         {
             try {
-                $nameFile = $request->file('image')->getClientOriginalName();
+                $file = $request->file('image');
+                $nameFile = Str::uuid() . '.' . $file->getClientOriginalExtension();
                 $pathFull = '/images/posts/'. date("Y/m/d");
 
-                $request->file('image')->move(public_path('images/posts/'). date("Y/m/d"), $nameFile);
+                $file->move(public_path('images/posts/'). date("Y/m/d"), $nameFile);
 
                 $input['image'] = $pathFull. '/' . $nameFile;
                 Article::create($input);
@@ -62,6 +64,9 @@ class ArticleController extends Controller
                 return redirect()->back();
             }
         }
+
+        Session::flash('error', 'Vui lòng chọn ảnh');
+        return redirect()->back();
     }
 
 
@@ -80,14 +85,14 @@ class ArticleController extends Controller
         $input = $request->all();
         if ($request->hasFile('image'))
         {
-            $nameFile = $request->file('image')->getClientOriginalName();
+            $file = $request->file('image');
+            $nameFile = Str::uuid() . '.' . $file->getClientOriginalExtension();
             $pathFull = '/images/posts/'. date("Y/m/d");
 
-            $request->file('image')->move(public_path('images/posts/'). date("Y/m/d"), $nameFile);
+            $file->move(public_path('images/posts/'). date("Y/m/d"), $nameFile);
             $input['image'] = $pathFull. '/' . $nameFile;
         }else{
             unset($input['image']);
-
         }
         $art->update($input);
         Session::flash('success', 'Cập nhật thành công');

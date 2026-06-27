@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,6 +35,10 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        $this->renderable(function (PostTooLargeException $e, $request) {
+            return redirect($request->url() . '?upload_error=1');
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
