@@ -101,8 +101,11 @@
                     <div class="bg-primary text-dark text-center font-weight-medium py-2" style="width: 170px;">Featured News</div>
                     <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
                          style="width: calc(100% - 170px); padding-right: 90px;">
-                        <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="">ICT Conference 2026 at Tien Giang University</a></div>
-                        <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="">University-level Scientific Workshop: Application of Science and Technology in Industrial and Infrastructure Development in the Mekong Delta</a></div>
+                        @foreach($featured as $item)
+                        <div class="text-truncate">
+                            <a class="text-white text-uppercase font-weight-semi-bold" href="/news/{{ $item->id }}">{{ $item->title }}</a>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -119,61 +122,23 @@
             <h4 class="m-0 text-uppercase font-weight-bold">Notification</h4>
         </div>
         <div class="owl-carousel news-carousel carousel-item-4 position-relative">
+            @foreach($featured as $item)
             <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="/template/img/ICT2026.jpg" style="object-fit: cover;">
+                @if($item->image)
+                    <img class="img-fluid h-100 w-100" src="{{ $item->image }}" style="object-fit: cover;">
+                @else
+                    <img class="img-fluid h-100 w-100" src="/template/img/news-700x435-1.jpg" style="object-fit: cover;">
+                @endif
                 <div class="overlay">
                     <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                           href="">Information Technology</a>
-                        <a class="text-white" href=""><small>Jan 01, 2045</small></a>
+                        @if($item->published_at)
+                            <a class="text-white" href="/news/{{ $item->id }}"><small>{{ $item->published_at->format('d/m/Y') }}</small></a>
+                        @endif
                     </div>
-                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">National ICT scientific conference 2026</a>
+                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="/news/{{ $item->id }}">{{ $item->title }}</a>
                 </div>
             </div>
-            <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="/template/img/htkhoa2026.jpg" style="object-fit: cover;">
-                <div class="overlay">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                           href="">News</a>
-                        <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">School-level conference 2026</a>
-                </div>
-            </div>
-            <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="/template/img/ANH HOI DONG CNTT.jpg" style="object-fit: cover;">
-                <div class="overlay">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                           href="">Information Technology</a>
-                        <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">22 STUDENTS OF THE UNIVERSITY OF INFORMATION TECHNOLOGY DEFEND THEIR GRADUATION THESIS</a>
-                </div>
-            </div>
-            <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="/template/img/hinh1luong.jpg" style="object-fit: cover;">
-                <div class="overlay">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                           href="">International cooperation</a>
-                        <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Tien Giang University accepts international students for internships</a>
-                </div>
-            </div>
-            <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="/template/img/thanham.jpg" style="object-fit: cover;">
-                <div class="overlay">
-                    <div class="mb-2">
-                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                           href="">Startup</a>
-                        <a class="text-white" href=""><small>Jan 01, 2045</small></a>
-                    </div>
-                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">The Sound Project won third prize at the INNOX 2026 City-level Innovation Competition</a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -189,45 +154,23 @@
                     <div class="col-12">
                         <div class="section-title">
                             <h4 class="m-0 text-uppercase font-weight-bold">News</h4>
-                            <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                            <a class="text-secondary font-weight-medium text-decoration-none" href="/news">View All</a>
                         </div>
                     </div>
+                    @foreach($latestNews->take(4) as $item)
                     <div class="col-lg-6">
                         <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="/template/img/ict2026.jpg" style="object-fit: cover;">
+                            @if($item->image)
+                                <img class="img-fluid w-100" src="{{ $item->image }}" style="height:200px; object-fit: cover;">
+                            @else
+                                <img class="img-fluid w-100" src="/template/img/news-700x435-1.jpg" style="height:200px; object-fit: cover;">
+                            @endif
                             <div class="bg-white border border-top-0 p-4">
-                                <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">National ICT scientific conference 2026</a>
+                                <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="/news/{{ $item->id }}">{{ $item->title }}</a>
                             </div>
                         </div>
-
                     </div>
-                    <div class="col-lg-6">
-                        <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="/template/img/htkhoa2026.jpg" style="object-fit: cover;">
-                            <div class="bg-white border border-top-0 p-4">
-                                <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">School-level conference 2026</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="/template/img/thanham2.jpg" style="object-fit: cover;">
-                            <div class="bg-white border border-top-0 p-4">
-                                <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">The startup project "Thanh Am" (Sound) has reached the finals of the INNOX 2026 competition.</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="/template/img/IMG_0745(1).jpg" style="object-fit: cover;">
-                            <div class="bg-white border border-top-0 p-4">
-                                <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Tien Giang University continues to accept international students for internships.</a>
-                            </div>
-                        </div>
-
-                    </div>
+                    @endforeach
 
 
                     <div class="col-12">

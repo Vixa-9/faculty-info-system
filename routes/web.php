@@ -14,6 +14,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\EduController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\NewsPublicController;
 
 
 
@@ -71,6 +72,16 @@ Route::middleware(['auth'])->group(function () {
 
         });
 
+        #News
+        Route::prefix('news')->group(function () {
+            Route::get('/',             [NewsController::class, 'index']);
+            Route::get('/create',       [NewsController::class, 'create']);
+            Route::post('/',            [NewsController::class, 'store']);
+            Route::get('/{news}/edit',  [NewsController::class, 'edit']);
+            Route::put('/{news}',       [NewsController::class, 'update']);
+            Route::DELETE('/destroy',   [NewsController::class, 'destroy']);
+        });
+
         #Upload
         Route::post('upload/services', [UploadController::class, 'store']);
 
@@ -90,10 +101,12 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
-Route::get('/',[MainControllers::class,'index']);
+Route::get('/', [MainControllers::class, 'index']);
 Route::get('/dccthp', [TrainingController::class, 'train']);
 Route::get('/ctdt', [EduController::class, 'edu']);
 Route::get('/ctdt22', [EduController::class, 'edu22']);
+Route::get('/news', [NewsPublicController::class, 'index']);
+Route::get('/news/{news}', [NewsPublicController::class, 'show']);
 
 
 

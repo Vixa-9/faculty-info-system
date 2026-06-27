@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\Config\ConfigService;
 use App\Http\Services\Slide\SlideService;
-use App\Models\Config;
+use App\Models\News;
 use App\Models\Slide;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MainControllers extends Controller
 {
@@ -24,8 +22,10 @@ class MainControllers extends Controller
     public function index()
     {
         return view('main', [
-            'title' => 'Khoa Kỹ thuật Công nghệ',
-            'slides' => $this->slide->show(),
+            'title'    => 'Khoa Kỹ thuật Công nghệ',
+            'slides'   => $this->slide->show(),
+            'featured' => News::where('active', true)->orderByDesc('published_at')->take(5)->get(),
+            'latestNews' => News::where('active', true)->orderByDesc('published_at')->take(8)->get(),
         ]);
     }
 

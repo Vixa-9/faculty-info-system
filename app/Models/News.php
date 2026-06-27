@@ -9,24 +9,21 @@ class News extends Model
 {
     use HasFactory;
 
-    protected  $fillable = [
-        'name',
-        'description',
+    protected $table = 'news';
+
+    protected $fillable = [
+        'title',
+        'summary',
         'content',
-        'menu_id',
-        'user',
-        'hot',
-        'photo'
+        'image',
+        'published_at',
+        'active',
     ];
 
-    public function menu()
-    {
-        return $this->hasOne(Menu::class, 'id', 'menu_id')
-            ->withDefault(['name' => '']);
-    }
+    protected $dates = ['published_at'];
 
-    protected $table = 'news';
-    public static function newsSearch($keyword, $paginate){
-        return News::where('name', 'like', '%' . $keyword . '%')->paginate($paginate, ['*'], 'pp');
+    public static function newsSearch($keyword, $paginate)
+    {
+        return News::where('title', 'like', '%' . $keyword . '%')->paginate($paginate, ['*'], 'pp');
     }
 }

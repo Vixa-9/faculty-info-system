@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\News\NewsFormRequest;
+use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Services\News\NewsService;
-use App\Models\News;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -14,76 +15,88 @@ class NewsController extends Controller
 
     public function __construct(NewsService $newsService)
     {
-        $this -> newsService = $newsService;
+        $this->newsService = $newsService;
     }
 
     public function index()
     {
-        return view ('admin.news.list',[
-           'title' => 'Danh sách bài viết',
-           'news' => $this ->newsService->get()
+        return view('admin.news.index', [
+            'title' => 'News List',
+            'news'  => $this->newsService->get(),
         ]);
     }
 
     public function create()
     {
-        return view('admin.news.add',[
-            'title' => 'Thêm Bài viết mới',
-            'menus' => $this->newsService->getMenu()
+        return view('admin.news.create', [
+            'title' => 'Add News',
         ]);
     }
 
-
-    public function store(NewsFormRequest $request)
+    public function store(Request $request)
     {
-        $this -> newsService ->insert($request);
-        return redirect()->back();
-    }
+        $request->validate([
+            'title'   => 'required',
+            'summary' => 'required',
+            'content' => 'required',
+            'image'   => 'nullable|mimes:jpeg,bmp,png|max:2048',
+        ]);
 
-    public function show(News $new)
-    {
-        return view('admin.news.edit',[
-            'title' =>"Chỉnh Sửa Bài Viết",
-            'new' => $new,
-            'menus' => $this->newsService->getMenu()
-    ]);
+        $input = $request->only(['title', 'summary', 'content', 'published_at', 'active']);
+        $input['active'] = $request->has('active') ? 1 : 0;
 
-    }
-
-    public function update(Request $request, News $new)
-    {
-        $result = $this->newsService->update($request, $new);
-        if ($result) {
-            return redirect('/admin/news/list');
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $nameFile = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $path = public_path('images/posts/' . date('Y/m/d'));
+            $file->move($path, $nameFile);
+            $input['image'] = '/images/posts/' . date('Y/m/d') . '/' . $nameFile;
         }
-        return redirect()->back();
+
+        News::create($input);
+        Session::flash('success', 'News added successfully');
+        return redirect('/admin/news');
+    }
+
+    public function edit(News $news)
+    {
+        return view('admin.news.edit', [
+            'title' => 'Edit News: ' . $news->title,
+            'news'  => $news,
+        ]);
+    }
+
+    public function update(Request $request, News $news)
+    {
+        $request->validate([
+            'title'   => 'required',
+            'summary' => 'required',
+            'content' => 'required',
+            'image'   => 'nullable|mimes:jpeg,bmp,png|max:2048',
+        ]);
+
+        $input = $request->only(['title', 'summary', 'content', 'published_at']);
+        $input['active'] = $request->has('active') ? 1 : 0;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $nameFile = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $path = public_path('images/posts/' . date('Y/m/d'));
+            $file->move($path, $nameFile);
+            $input['image'] = '/images/posts/' . date('Y/m/d') . '/' . $nameFile;
+        }
+
+        $news->update($input);
+        Session::flash('success', 'News updated successfully');
+        return redirect('/admin/news');
     }
 
     public function destroy(Request $request)
     {
         $result = $this->newsService->delete($request);
         if ($result) {
-            return response()->json([
-                'error' => false,
-                'message' => 'Xóa thành công sản phẩm'
-            ]);
+            return response()->json(['error' => false, 'message' => 'News deleted successfully']);
         }
-
-        return response()->json([ 'error' => true ]);
-    }
-
-    public function searchResult(Request $request)
-  {
-        $keyword = $request->input('keyword');
-        $nResult = null;
-       
-        if($keyword != null){
-            $nResult = News::newsSearch($keyword, 3);
-          
-        }
-
-        return view ('admin.news.search',[
-          'title' => 'Tìm kiếm Bài Viết'
-       ])->with(compact('nResult'));
+        return response()->json(['error' => true]);
     }
 }

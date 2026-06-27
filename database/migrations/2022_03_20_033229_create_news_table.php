@@ -6,31 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNewsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table ->text('description');
-            $table ->longText('content');
-            $table->integer('menu_id');
-            $table -> string('user');
-            $table ->text('hot');
-            $table ->string('photo');
+            $table->string('title');
+            $table->text('summary');
+            $table->longText('content');
+            $table->string('image')->nullable();
+            $table->timestamp('published_at')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('news');

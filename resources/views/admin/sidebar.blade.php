@@ -68,6 +68,30 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="/admin/news" class="nav-link">
+                        <i class="fas fa-rss"></i>
+                        <p>
+                            News Management
+                        </p>
+                        <i class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/news/create" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add News</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/news" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>News List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
                     <a href="/admin/arts/add" class="nav-link">
                         <i class="fas fa-newspaper"></i>
                         <p>
