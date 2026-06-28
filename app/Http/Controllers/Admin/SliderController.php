@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: Slider functionality is handled by SlideController + slides table.
+// This controller is kept for potential future use.
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;

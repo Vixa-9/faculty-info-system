@@ -6,40 +6,45 @@
 
 @section('content')
 <div class="col-lg-12 text-center text-lg-right" style="margin: 4px;">
-    <a class="btn btn-success" href="{{'list'}}">Slides List</a>
+    <a class="btn btn-success" href="/admin/slides/list">Slides List</a>
 </div>
 
 <div class="card card-primary">
-    <form action =""  method="POST" enctype="multipart/form-data" id="slideForm">
+    <form action="/admin/slides/add" method="POST" enctype="multipart/form-data" id="slideForm">
+        @csrf
         <div class="card-body">
             <div class="form-group">
-                <label>Slide Title</label>
-                <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="name">
+                <label>Slide Title <span class="text-danger">*</span></label>
+                <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="name">
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label>Content</label>
-                <textarea name="content" id="content" class ="form-control ckeditor"></textarea>
+                <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
             </div>
 
             <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" name="image" class="form-control" id="image" onchange="loadfile(event)">
-                <img id="image_show" style="width: 200px; height: 100px" alt="image">
+                <label>Image <span class="text-danger">*</span></label>
+                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image" onchange="loadfile(event)">
+                <img id="image_show" style="width: 200px; height: 100px; margin-top:8px; display:none;" alt="preview">
                 <small class="text-muted">Max size: 8 MB. Allowed: jpeg, bmp, png.</small>
+                @error('image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label>Link</label>
-                <input type="text" name="url" value="{{old('url')}}" class="form-control" id="url">
+                <input type="text" name="url" value="{{ old('url') }}" class="form-control" id="url">
             </div>
         </div>
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Add Slide</button>
         </div>
-
-        @csrf
     </form>
 </div>
 @endsection
@@ -47,12 +52,14 @@
 @section('footer')
     <script>
         CKEDITOR.replace('content', {
-            enterMode : CKEDITOR.ENTER_BR,
-            shiftEnterMode : CKEDITOR.ENTER_P
+            enterMode: CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_P
         });
 
         function loadfile(event) {
-            document.getElementById('image_show').src = URL.createObjectURL(event.target.files[0]);
+            var img = document.getElementById('image_show');
+            img.src = URL.createObjectURL(event.target.files[0]);
+            img.style.display = 'block';
         }
 
         document.getElementById('slideForm').addEventListener('submit', function(e) {

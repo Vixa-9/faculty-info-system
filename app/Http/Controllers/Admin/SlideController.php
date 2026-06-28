@@ -57,7 +57,7 @@ class SlideController extends Controller
                 $slide['image'] = $pathFull. '/' . $nameFile;
                 Slide::create($slide);
                 Session::flash('success', 'Thêm Slide mới thành công');
-                return redirect()->back();
+                return redirect('/admin/slides/list');
 
             } catch (\Exception $error) {
                 Session::flash('error', 'Thêm Slide mới không thành công');

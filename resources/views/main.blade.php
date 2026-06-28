@@ -22,9 +22,11 @@
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                href="">FET</a>
-                            <a class="text-white" href="">Jan 01, 2022</a>
+                            <a class="text-white" href=""><small>{{ $slide->created_at->format('d/m/Y') }}</small></a>
                         </div>
-                        {{--<a class="h2 m-0 text-white text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>--}}
+                        @if($slide->name)
+                        <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="{{ $slide->url ?? '' }}">{{ $slide->name }}</a>
+                        @endif
                     </div>
                 </div>
                 @endforeach

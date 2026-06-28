@@ -14,7 +14,7 @@
                 </div>
             </form>
         </div>
-        <a class="btn btn-success" href="{{'add'}}">Add New Slide
+        <a class="btn btn-success" href="/admin/slides/add">Add New Slide
         </a>
     </div>
 
