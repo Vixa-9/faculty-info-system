@@ -15,6 +15,7 @@ use App\Http\Controllers\EduController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\NewsPublicController;
+use App\Http\Controllers\Admin\AdminAnalyticsController;
 
 
 
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     {
         Route::get('/', [MainController::class, 'index'])->name('admin');
         Route::get('main', [MainController::class, 'index']);
+        Route::get('analytics', [AdminAnalyticsController::class, 'index']);
 
         #Config
         Route::prefix('configs')->group(function () {

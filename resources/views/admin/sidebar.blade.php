@@ -25,6 +25,13 @@
                      with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
+                    <a href="/admin/analytics" class="nav-link">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Analytics</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="/admin/configs/add" class="nav-link active">
                         <i class="fas fa-user"></i>
                         <p>
