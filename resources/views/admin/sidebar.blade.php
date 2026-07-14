@@ -21,76 +21,56 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="/admin/analytics" class="nav-link">
-                        <i class="fas fa-chart-bar"></i>
+                    <a href="/admin/analytics" class="nav-link {{ request()->is('admin/analytics') ? 'active' : '' }}">
+                        <i class="fas fa-chart-bar nav-icon"></i>
                         <p>Analytics</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/configs/add" class="nav-link active">
-                        <i class="fas fa-user"></i>
-                        <p>
-                           User Management
-                        </p>
+                    <a href="/admin/faculty-info" class="nav-link {{ request()->is('admin/faculty-info') ? 'active' : '' }}">
+                        <i class="fas fa-university nav-icon"></i>
+                        <p>Faculty Info</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/configs/add" class="nav-link">
-                        <i class="fas fa-cogs"></i>
-                        <p>
-                            System configuration
-
-                        </p>
+                    <a href="/admin/configs/add" class="nav-link {{ request()->is('admin/configs*') ? 'active' : '' }}">
+                        <i class="fas fa-user nav-icon"></i>
+                        <p>User Management</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/menus/add" class="nav-link">
-                        <i class="fas fa-sitemap"></i>
-                        <p>
-                            Menu Management
-                            {{--<i class="right fas fa-angle-left"></i>--}}
-                        </p>
+                    <a href="/admin/configs/add" class="nav-link {{ request()->is('admin/system*') ? 'active' : '' }}">
+                        <i class="fas fa-cogs nav-icon"></i>
+                        <p>System configuration</p>
                     </a>
-                    {{--<ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/menus/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Menu</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/menus/list" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Menu List</p>
-                            </a>
-                        </li>
-                    </ul>--}}
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/news" class="nav-link">
-                        <i class="fas fa-rss"></i>
-                        <p>
-                            News Management
-                        </p>
-                        <i class="right fas fa-angle-left"></i>
+                    <a href="/admin/menus/add" class="nav-link {{ request()->is('admin/menus*') ? 'active' : '' }}">
+                        <i class="fas fa-sitemap nav-icon"></i>
+                        <p>Menu Management</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ request()->is('admin/news*') ? 'menu-open' : '' }}">
+                    <a href="/admin/news" class="nav-link {{ request()->is('admin/news*') ? 'active' : '' }}">
+                        <i class="fas fa-rss nav-icon"></i>
+                        <p>News Management <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/news/create" class="nav-link">
+                            <a href="/admin/news/create" class="nav-link {{ request()->is('admin/news/create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add News</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/news" class="nav-link">
+                            <a href="/admin/news" class="nav-link {{ request()->is('admin/news') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>News List</p>
                             </a>
@@ -98,23 +78,20 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="/admin/arts/add" class="nav-link">
-                        <i class="fas fa-newspaper"></i>
-                        <p>
-                            Article Management
-                        </p>
-                        <i class="right fas fa-angle-left"></i>
+                <li class="nav-item {{ request()->is('admin/arts*') ? 'menu-open' : '' }}">
+                    <a href="/admin/arts/list" class="nav-link {{ request()->is('admin/arts*') ? 'active' : '' }}">
+                        <i class="fas fa-newspaper nav-icon"></i>
+                        <p>Article Management <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/arts/add" class="nav-link">
+                            <a href="/admin/arts/add" class="nav-link {{ request()->is('admin/arts/add') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Post</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/arts/list" class="nav-link">
+                            <a href="/admin/arts/list" class="nav-link {{ request()->is('admin/arts/list') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List of Articles</p>
                             </a>
@@ -122,23 +99,20 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="/admin/slides/add" class="nav-link">
-                        <i class="far fa-images"></i>
-                        <p>
-                            Slide Management
-                        </p>
-                        <i class="right fas fa-angle-left"></i>
+                <li class="nav-item {{ request()->is('admin/slides*') ? 'menu-open' : '' }}">
+                    <a href="/admin/slides/list" class="nav-link {{ request()->is('admin/slides*') ? 'active' : '' }}">
+                        <i class="far fa-images nav-icon"></i>
+                        <p>Slide Management <i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/slides/add" class="nav-link">
+                            <a href="/admin/slides/add" class="nav-link {{ request()->is('admin/slides/add') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add Slides</p>
+                                <p>Add Slide</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/slides/list" class="nav-link">
+                            <a href="/admin/slides/list" class="nav-link {{ request()->is('admin/slides/list') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Slide List</p>
                             </a>
@@ -147,120 +121,18 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/slides/add" class="nav-link">
-                        <i class="fas fa-wifi"></i>
-                        <p>
-                            Manage Link Pages
-                        </p>
+                    <a href="/admin/files/outline" class="nav-link {{ request()->is('admin/files*') ? 'active' : '' }}">
+                        <i class="fas fa-upload nav-icon"></i>
+                        <p>File Upload Management</p>
                     </a>
-                    {{--<ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/sliders/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Slider</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/sliders/list" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Slider List</p>
-                            </a>
-                        </li>
-                    </ul>--}}
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/sliders/add" class="nav-link">
-                        <i class="fas fa-video"></i>
-                        <p>
-                            Video Management
-                        </p>
+                    <a href="/admin/contacts/add" class="nav-link {{ request()->is('admin/contacts*') ? 'active' : '' }}">
+                        <i class="fas fa-address-card nav-icon"></i>
+                        <p>Contact Management</p>
                     </a>
-                    {{--<ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/sliders/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Slider</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/sliders/list" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Slider List</p>
-                            </a>
-                        </li>
-                    </ul>--}}
                 </li>
-                <li class="nav-item">
-                   <a {{--href="/"--}} class="nav-link">
-                        <i class="fas fa-upload"></i>
-                        <p>
-                            File Upload Management
-                        </p>
-                       <i class="right fas fa-angle-left"></i>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/files/outline" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Upload the detailed course syllabus.</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Upload the detailed course syllabus.</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/admin/files/lis-outline" class="nav-link">
-                        <i class="fab fa-facebook-square"></i>
-                        <p>
-                            Social Media Management
-                         </p>
-                    </a>
-                    {{--<ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/sliders/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Slider</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/sliders/list" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Slider List</p>
-                            </a>
-                        </li>
-                    </ul>--}}
-                </li>
-
-                <li class="nav-item">
-                    <a href="/admin/contacts/add" class="nav-link">
-                        <i class="fas fa-address-card"></i>
-                        <p>
-                            Contact Management
-                        </p>
-                    </a>
-                    {{--<ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/sliders/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Slider</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/sliders/list" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Slider List</p>
-                            </a>
-                        </li>
-                    </ul>--}}
-                </li>
-
 
             </ul>
         </nav>

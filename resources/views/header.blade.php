@@ -129,6 +129,7 @@
         <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
                 <a href="{{'/'}}" class="nav-item nav-link active">Home Page</a>
+                <a href="{{'/about'}}" class="nav-item nav-link">About</a>
                 <div class="reverse-list">
                 @foreach($menus as $menu)
                      @if (count($menu->submenus)>0)

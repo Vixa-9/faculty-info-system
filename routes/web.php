@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\NewsPublicController;
 use App\Http\Controllers\Admin\AdminAnalyticsController;
+use App\Http\Controllers\Admin\FacultyInfoController;
+use App\Http\Controllers\FacultyPublicController;
 
 
 
@@ -29,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [MainController::class, 'index'])->name('admin');
         Route::get('main', [MainController::class, 'index']);
         Route::get('analytics', [AdminAnalyticsController::class, 'index']);
+        Route::get('faculty-info',  [FacultyInfoController::class, 'index']);
+        Route::post('faculty-info', [FacultyInfoController::class, 'update']);
 
         #Config
         Route::prefix('configs')->group(function () {
@@ -109,6 +113,7 @@ Route::get('/ctdt', [EduController::class, 'edu']);
 Route::get('/ctdt22', [EduController::class, 'edu22']);
 Route::get('/news', [NewsPublicController::class, 'index']);
 Route::get('/news/{news}', [NewsPublicController::class, 'show']);
+Route::get('/about', [FacultyPublicController::class, 'about']);
 
 
 
