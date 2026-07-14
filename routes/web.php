@@ -23,6 +23,7 @@ use App\Http\Controllers\FacultyPublicController;
 
 Route::get('admin/users/login', [LoginController::class,'index'])->name('login');
 Route::post('admin/users/login/store', [LoginController::class,'store']);
+Route::post('admin/logout', [LoginController::class,'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
 

@@ -35,4 +35,10 @@ class LoginController extends Controller
         Session::flash('error', 'Email hoặc Password không đúng');
         return redirect()->back();
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }

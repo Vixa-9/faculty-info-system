@@ -155,9 +155,26 @@
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 50%; max-width: 250px;">
                 <input type="text" class="form-control border-0" placeholder="Keyword">
                 <div class="input-group-append">
-                    <button class="input-group-text bg-primary text-dark border-0 px-3"><i
-                            class="fa fa-search"></i></button>
+                    <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
                 </div>
+            </div>
+
+            <div class="ml-3 d-flex align-items-center">
+                @auth
+                    <a href="/admin" style="background:#f6c500;color:#1a1a1a;font-weight:600;font-size:0.8rem;padding:6px 14px;border-radius:3px;text-decoration:none;margin-right:8px;white-space:nowrap;">
+                        <i class="fas fa-tachometer-alt mr-1"></i>Admin Panel
+                    </a>
+                    <form action="/admin/logout" method="POST" class="m-0">
+                        @csrf
+                        <button type="submit" style="background:transparent;border:1px solid rgba(255,255,255,0.5);color:#fff;font-size:0.8rem;padding:6px 14px;border-radius:3px;cursor:pointer;white-space:nowrap;">
+                            <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                        </button>
+                    </form>
+                @else
+                    <a href="/admin/users/login" style="background:#f6c500;color:#1a1a1a;font-weight:600;font-size:0.8rem;padding:6px 14px;border-radius:3px;text-decoration:none;white-space:nowrap;">
+                        <i class="fas fa-sign-in-alt mr-1"></i>Login
+                    </a>
+                @endauth
             </div>
         </div>
     </nav>

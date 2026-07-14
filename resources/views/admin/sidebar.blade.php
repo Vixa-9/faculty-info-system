@@ -134,6 +134,23 @@
                     </a>
                 </li>
 
+                <li class="nav-item mt-3 border-top pt-2">
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-globe nav-icon"></i>
+                        <p>View Site</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <form action="/admin/logout" method="POST" class="m-0">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-link w-100 text-left" style="color:#c2c7d0;">
+                            <i class="fas fa-sign-out-alt nav-icon"></i>
+                            <p>Logout</p>
+                        </button>
+                    </form>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
