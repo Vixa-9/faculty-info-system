@@ -44,6 +44,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="/admin/departments" class="nav-link {{ request()->is('admin/departments*') ? 'active' : '' }}">
+                        <i class="fas fa-building nav-icon"></i>
+                        <p>Departments</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="/admin/configs/add" class="nav-link {{ request()->is('admin/configs*') ? 'active' : '' }}">
                         <i class="fas fa-user nav-icon"></i>
                         <p>User Management</p>

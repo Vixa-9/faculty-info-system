@@ -96,7 +96,7 @@
      <div class="row align-items-center bg-white py-3 px-lg-5">
          <div class="col-lg-6">
              <a class="navbar-brand p-0 d-none d-lg-block">
-                 <img class="img-fluid" src="{{'images/logo/'.$logo->description}}" alt="Trường Đại học Tiền Giang">
+                 <img class="img-fluid" src="{{'/images/logo/'.$logo->description}}" alt="Trường Đại học Tiền Giang">
              </a>
          </div>
 
