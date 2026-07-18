@@ -37,6 +37,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="/admin/lecturers" class="nav-link {{ request()->is('admin/lecturers*') ? 'active' : '' }}">
+                        <i class="fas fa-chalkboard-teacher nav-icon"></i>
+                        <p>Lecturers</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="/admin/configs/add" class="nav-link {{ request()->is('admin/configs*') ? 'active' : '' }}">
                         <i class="fas fa-user nav-icon"></i>
                         <p>User Management</p>

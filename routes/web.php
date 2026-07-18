@@ -18,6 +18,8 @@ use App\Http\Controllers\NewsPublicController;
 use App\Http\Controllers\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Admin\FacultyInfoController;
 use App\Http\Controllers\FacultyPublicController;
+use App\Http\Controllers\LecturerPublicController;
+use App\Http\Controllers\Admin\LecturerController;
 
 
 
@@ -34,6 +36,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('analytics', [AdminAnalyticsController::class, 'index']);
         Route::get('faculty-info',  [FacultyInfoController::class, 'index']);
         Route::post('faculty-info', [FacultyInfoController::class, 'update']);
+
+        Route::prefix('lecturers')->group(function () {
+            Route::get('/',                [LecturerController::class, 'index']);
+            Route::get('/create',          [LecturerController::class, 'create']);
+            Route::post('/',               [LecturerController::class, 'store']);
+            Route::get('/{lecturer}/edit', [LecturerController::class, 'edit']);
+            Route::put('/{lecturer}',      [LecturerController::class, 'update']);
+            Route::delete('/destroy',      [LecturerController::class, 'destroy']);
+        });
 
         #Config
         Route::prefix('configs')->group(function () {
@@ -115,6 +126,7 @@ Route::get('/ctdt22', [EduController::class, 'edu22']);
 Route::get('/news', [NewsPublicController::class, 'index']);
 Route::get('/news/{news}', [NewsPublicController::class, 'show']);
 Route::get('/about', [FacultyPublicController::class, 'about']);
+Route::get('/lecturers', [LecturerPublicController::class, 'index']);
 
 
 
