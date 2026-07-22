@@ -22,6 +22,8 @@ use App\Http\Controllers\LecturerPublicController;
 use App\Http\Controllers\Admin\LecturerController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\DepartmentPublicController;
+use App\Http\Controllers\Admin\ResearchActivityController;
+use App\Http\Controllers\ResearchPublicController;
 
 
 
@@ -38,6 +40,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('analytics', [AdminAnalyticsController::class, 'index']);
         Route::get('faculty-info',  [FacultyInfoController::class, 'index']);
         Route::post('faculty-info', [FacultyInfoController::class, 'update']);
+
+        Route::prefix('research')->group(function () {
+            Route::get('/',                  [ResearchActivityController::class, 'index']);
+            Route::get('/create',            [ResearchActivityController::class, 'create']);
+            Route::post('/',                 [ResearchActivityController::class, 'store']);
+            Route::get('/{research}/edit',   [ResearchActivityController::class, 'edit']);
+            Route::put('/{research}',        [ResearchActivityController::class, 'update']);
+            Route::delete('/destroy',        [ResearchActivityController::class, 'destroy']);
+        });
 
         Route::prefix('departments')->group(function () {
             Route::get('/',                  [DepartmentController::class, 'index']);
@@ -135,6 +146,7 @@ Route::get('/news', [NewsPublicController::class, 'index']);
 Route::get('/news/{news}', [NewsPublicController::class, 'show']);
 Route::get('/about', [FacultyPublicController::class, 'about']);
 Route::get('/lecturers', [LecturerPublicController::class, 'index']);
+Route::get('/research', [ResearchPublicController::class, 'index']);
 Route::get('/departments', [DepartmentPublicController::class, 'index']);
 Route::get('/departments/{department:slug}', [DepartmentPublicController::class, 'show']);
 
