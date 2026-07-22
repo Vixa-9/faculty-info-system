@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     @include('head')
 </head>
@@ -11,7 +11,7 @@
 
         @if(!empty($info['introduction']))
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Introduction</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.introduction') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $info['introduction'] !!}
@@ -20,7 +20,7 @@
 
         @if(!empty($info['vision']))
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Vision</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.vision') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $info['vision'] !!}
@@ -29,7 +29,7 @@
 
         @if(!empty($info['mission']))
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Mission</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.mission') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $info['mission'] !!}
@@ -38,7 +38,7 @@
 
         @if(!empty($info['history']))
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">History</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.history') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $info['history'] !!}
@@ -47,7 +47,7 @@
 
         @if(!empty($info['org_structure']))
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Organizational Structure</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.org_structure') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $info['org_structure'] !!}
@@ -56,7 +56,7 @@
 
         @if(!empty($info['office_info']))
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Contact & Office</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.contact_office') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $info['office_info'] !!}

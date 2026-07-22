@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     @include('head')
 </head>
@@ -10,7 +10,7 @@
     <div class="container">
 
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Research Activities</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.research_activities') }}</h4>
         </div>
 
         {{-- Type filter tabs --}}
@@ -18,13 +18,13 @@
             <a href="/research"
                class="btn btn-sm mr-1 mb-1 {{ !request('type') ? 'btn-primary' : 'btn-outline-secondary' }}"
                style="{{ !request('type') ? 'background:#1a4f8a;border-color:#1a4f8a;color:#fff;' : 'color:#333;' }}">
-                All
+                {{ __('site.filter_all') }}
             </a>
             @foreach($types as $type)
             <a href="/research?type={{ urlencode($type) }}"
                class="btn btn-sm mr-1 mb-1 {{ request('type') === $type ? 'btn-primary' : 'btn-outline-secondary' }}"
                style="{{ request('type') === $type ? 'background:#1a4f8a;border-color:#1a4f8a;color:#fff;' : 'color:#333;' }}">
-                {{ $type }}
+                {{ __('site.type_' . $type) }}
             </a>
             @endforeach
         </div>
@@ -92,7 +92,7 @@
                     <div style="margin-top:8px;">
                         <a href="{{ $activity->link }}" target="_blank" rel="noopener"
                            style="color:#1a4f8a;font-size:0.82rem;font-weight:600;">
-                            <i class="fas fa-external-link-alt mr-1"></i>View more
+                            <i class="fas fa-external-link-alt mr-1"></i>{{ __('site.view_more') }}
                         </a>
                     </div>
                 @endif
@@ -100,7 +100,7 @@
         </div>
         @empty
             <div class="bg-white border p-4 text-center" style="color:#666;">
-                No research activities found for this filter.
+                {{ __('site.no_research') }}
             </div>
         @endforelse
 

@@ -149,6 +149,13 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'vi'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+});
+
 Route::get('/', [MainControllers::class, 'index']);
 Route::get('/dccthp', [TrainingController::class, 'train']);
 Route::get('/ctdt', [EduController::class, 'edu']);

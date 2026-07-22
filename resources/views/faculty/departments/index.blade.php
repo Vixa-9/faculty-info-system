@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     @include('head')
 </head>
@@ -10,7 +10,7 @@
     <div class="container">
 
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Departments</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.departments') }}</h4>
         </div>
 
         <div class="row mb-4">
@@ -27,7 +27,8 @@
                             </div>
                         @endif
                         <div style="margin-top:12px; font-size:0.82rem; color:#1a4f8a; font-weight:600;">
-                            {{ $department->lecturers()->count() }} lecturer(s) &rarr; View details
+                            {{ trans('site.lecturer_count', ['count' => $department->lecturers()->count()]) }}
+                            &rarr; {{ __('site.view_details') }}
                         </div>
                     </div>
                 </a>

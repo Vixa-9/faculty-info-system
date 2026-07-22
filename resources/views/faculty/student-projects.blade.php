@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     @include('head')
 </head>
@@ -10,7 +10,7 @@
     <div class="container">
 
         <div class="section-title">
-            <h4 class="m-0 text-uppercase font-weight-bold">Student Projects</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.student_projects') }}</h4>
         </div>
 
         {{-- Filters --}}
@@ -18,7 +18,7 @@
             <form method="GET" action="/student-projects" class="d-flex flex-wrap" style="gap:10px; align-items:center; width:100%;">
                 <div style="flex:1; min-width:200px;">
                     <select name="department" class="form-control form-control-sm" onchange="this.form.submit()">
-                        <option value="">All Departments</option>
+                        <option value="">{{ __('site.all_departments') }}</option>
                         @foreach($departments as $dept)
                             <option value="{{ $dept }}" {{ request('department') === $dept ? 'selected' : '' }}>{{ $dept }}</option>
                         @endforeach
@@ -26,7 +26,7 @@
                 </div>
                 <div style="min-width:120px;">
                     <select name="year" class="form-control form-control-sm" onchange="this.form.submit()">
-                        <option value="">All Years</option>
+                        <option value="">{{ __('site.all_years') }}</option>
                         @foreach($years as $y)
                             <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>{{ $y }}</option>
                         @endforeach
@@ -34,7 +34,7 @@
                 </div>
                 @if(request('department') || request('year'))
                     <a href="/student-projects" class="btn btn-sm btn-outline-secondary" style="color:#333;">
-                        <i class="fas fa-times mr-1"></i>Clear
+                        <i class="fas fa-times mr-1"></i>{{ __('site.clear_filters') }}
                     </a>
                 @endif
             </form>
@@ -86,7 +86,7 @@
 
                         @if($project->supervisor)
                             <div style="font-size:0.8rem;color:#555;margin-bottom:8px;">
-                                <i class="fas fa-chalkboard-teacher mr-1 text-muted"></i>Supervisor: {{ $project->supervisor }}
+                                <i class="fas fa-chalkboard-teacher mr-1 text-muted"></i>{{ __('site.supervisor') }}: {{ $project->supervisor }}
                             </div>
                         @endif
 
@@ -101,7 +101,7 @@
         @empty
             <div class="col-12">
                 <div class="bg-white border p-4 text-center" style="color:#666;">
-                    No projects found for the selected filters.
+                    {{ __('site.no_projects') }}
                 </div>
             </div>
         @endforelse

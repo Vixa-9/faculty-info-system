@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     @include('head')
 </head>
@@ -21,7 +21,7 @@
 
         @if($department->training_programs)
         <div class="section-title mt-3">
-            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">Training Programs</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">{{ __('site.training_programs') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $department->training_programs !!}
@@ -30,7 +30,7 @@
 
         @if($department->research_activities)
         <div class="section-title mt-3">
-            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">Research Activities</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">{{ __('site.dept_research') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! $department->research_activities !!}
@@ -39,7 +39,7 @@
 
         @if($lecturers->isNotEmpty())
         <div class="section-title mt-3">
-            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">Lecturers</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">{{ __('site.lecturers') }}</h4>
         </div>
         <div class="row mb-4">
             @foreach($lecturers as $lecturer)
@@ -78,7 +78,7 @@
 
         @if($department->contact_info)
         <div class="section-title mt-3">
-            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">Contact</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">{{ __('site.contact') }}</h4>
         </div>
         <div class="bg-white border p-4 mb-4" style="color:#333;">
             {!! nl2br(e($department->contact_info)) !!}
@@ -86,7 +86,7 @@
         @endif
 
         <div class="mb-4">
-            <a href="/departments" style="color:#1a4f8a;">&larr; Back to all departments</a>
+            <a href="/departments" style="color:#1a4f8a;">&larr; {{ __('site.back_to_departments') }}</a>
         </div>
 
     </div>
