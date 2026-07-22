@@ -58,6 +58,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="/admin/student-projects" class="nav-link {{ request()->is('admin/student-projects*') ? 'active' : '' }}">
+                        <i class="fas fa-project-diagram nav-icon"></i>
+                        <p>Student Projects</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="/admin/configs/add" class="nav-link {{ request()->is('admin/configs*') ? 'active' : '' }}">
                         <i class="fas fa-user nav-icon"></i>
                         <p>User Management</p>
