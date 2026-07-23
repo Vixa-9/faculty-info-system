@@ -137,28 +137,52 @@
 
         <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
-                <a href="{{'/'}}" class="nav-item nav-link active">{{ __('site.nav_home') }}</a>
-                <a href="{{'/about'}}" class="nav-item nav-link">{{ __('site.nav_about') }}</a>
-                <div class="reverse-list">
-                @foreach($menus as $menu)
-                     @if (count($menu->submenus)>0)
-                        <div class="nav-item dropdown">
-                                <a href="{{$menu->link}}" class="nav-link dropdown-toggle" data-toggle="dropdown">{{$menu->name}}</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                @foreach($menu->submenus as $submenu)
-                                    <a href="{{$submenu->link}}" class="dropdown-item">{{$submenu->name}}</a>
-                                @endforeach
-                            </div>
-                            </div>
-                 @else
-                @if($menu->parent_id == 0)
 
-                            <a href="contact.html" class="nav-item nav-link" >{{$menu->name}}</a>
+                <a href="/" class="nav-item nav-link">{{ __('site.nav_home') }}</a>
 
-                @endif
-                    @endif
-                @endforeach
+                <div class="nav-item dropdown">
+                    <a href="/about" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('site.nav_about_dropdown') }}</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="/about" class="dropdown-item">{{ __('site.nav_about_faculty') }}</a>
+                        <a href="/departments/faculty-office" class="dropdown-item">{{ __('site.nav_faculty_office') }}</a>
+                        <a href="/departments" class="dropdown-item">{{ __('site.nav_departments_link') }}</a>
+                        <a href="/lecturers" class="dropdown-item">{{ __('site.nav_lecturers_link') }}</a>
+                    </div>
                 </div>
+
+                <div class="nav-item dropdown">
+                    <a href="/dccthp" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('site.nav_education') }}</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="/dccthp" class="dropdown-item">{{ __('site.nav_training_programs') }}</a>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('site.nav_admissions') }}</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="#" class="dropdown-item">{{ __('site.nav_admission_info') }}</a>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="/research" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('site.nav_research_dropdown') }}</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="/research" class="dropdown-item">{{ __('site.nav_research_activities') }}</a>
+                    </div>
+                </div>
+
+                <a href="/student-projects" class="nav-item nav-link">{{ __('site.nav_student_projects') }}</a>
+
+                <div class="nav-item dropdown">
+                    <a href="/news" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('site.nav_news_dropdown') }}</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="/news" class="dropdown-item">{{ __('site.nav_news_link') }}</a>
+                        <a href="#" class="dropdown-item">{{ __('site.nav_announcements') }}</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="nav-item nav-link">{{ __('site.nav_contact') }}</a>
+
             </div>
 
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 50%; max-width: 190px;">

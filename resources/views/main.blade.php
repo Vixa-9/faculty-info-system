@@ -117,6 +117,51 @@
 <!-- Breaking News End -->
 
 
+<!-- Faculty Introduction Start -->
+@if(!empty($facultyIntro))
+<div class="container-fluid pt-5 mb-3">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.home_faculty_intro') }}</h4>
+            <a href="/about" class="text-secondary font-weight-medium text-decoration-none">{{ __('site.home_learn_more') }} &rarr;</a>
+        </div>
+        <div class="bg-white border p-4" style="color:#333; font-size:0.95rem; line-height:1.7;">
+            {!! Str::limit(strip_tags($facultyIntro), 600) !!}
+        </div>
+    </div>
+</div>
+@endif
+<!-- Faculty Introduction End -->
+
+
+<!-- Our Departments Start -->
+<div class="container-fluid pt-5 mb-3">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.home_our_departments') }}</h4>
+            <a href="/departments" class="text-secondary font-weight-medium text-decoration-none">{{ __('site.home_view_all') }}</a>
+        </div>
+        <div class="row" style="justify-content:flex-start;">
+            @foreach($departments as $dept)
+            <div class="col-md-4 col-lg mb-3" style="min-width:180px;">
+                <a href="/departments/{{ $dept->slug }}" class="text-decoration-none">
+                    <div class="bg-white border p-3 h-100 text-center" style="color:#333; transition:box-shadow .2s;"
+                         onmouseover="this.style.boxShadow='0 2px 10px rgba(26,79,138,.15)'"
+                         onmouseout="this.style.boxShadow=''">
+                        <div style="width:48px;height:48px;background:#1a4f8a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+                            <i class="fas fa-building" style="color:#f6c500;font-size:1.1rem;"></i>
+                        </div>
+                        <div style="font-weight:700;font-size:0.82rem;color:#1a4f8a;line-height:1.3;">{{ $dept->name }}</div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+<!-- Our Departments End -->
+
+
 <!-- Featured News Slider Start -->
 <div class="container-fluid pt-5 mb-3">
     <div class="container">
@@ -155,8 +200,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title">
-                            <h4 class="m-0 text-uppercase font-weight-bold">News</h4>
-                            <a class="text-secondary font-weight-medium text-decoration-none" href="/news">View All</a>
+                            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.home_latest_news') }}</h4>
+                            <a class="text-secondary font-weight-medium text-decoration-none" href="/news">{{ __('site.home_all_news') }}</a>
                         </div>
                     </div>
                     @foreach($latestNews->take(4) as $item)
@@ -421,6 +466,128 @@
     </div>
 </div>
 <!-- News With Sidebar End -->
+
+
+<!-- Featured Research Start -->
+@if($featuredResearch->isNotEmpty())
+<div class="container-fluid pt-5 mb-3">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.home_featured_research') }}</h4>
+            <a href="/research" class="text-secondary font-weight-medium text-decoration-none">{{ __('site.home_all_research') }}</a>
+        </div>
+        <div class="row" style="justify-content:flex-start;">
+            @foreach($featuredResearch as $activity)
+            @php
+                $badgeColor = [
+                    'Research Project' => '#1a4f8a',
+                    'Publication'      => '#28a745',
+                    'Conference'       => '#17a2b8',
+                    'Workshop'         => '#e6a817',
+                    'Award'            => '#dc3545',
+                ][$activity->type] ?? '#6c757d';
+            @endphp
+            <div class="col-md-4 mb-3">
+                <div class="bg-white border p-3 h-100 d-flex flex-column" style="color:#333;">
+                    <span style="display:inline-block;background:{{ $badgeColor }};color:#fff;font-size:0.7rem;font-weight:600;padding:2px 7px;border-radius:3px;margin-bottom:8px;align-self:flex-start;">
+                        {{ __('site.type_' . $activity->type) }}
+                    </span>
+                    <div style="font-weight:700;font-size:0.9rem;margin-bottom:6px;line-height:1.3;">{{ $activity->title }}</div>
+                    @if($activity->authors)
+                        <div style="font-size:0.78rem;color:#888;">
+                            <i class="fas fa-users mr-1"></i>{{ $activity->authors }}
+                        </div>
+                    @endif
+                    @if($activity->date)
+                        <div style="font-size:0.75rem;color:#aaa;margin-top:4px;">
+                            <i class="far fa-calendar mr-1"></i>{{ \Carbon\Carbon::parse($activity->date)->format('d/m/Y') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+<!-- Featured Research End -->
+
+
+<!-- Student Projects Start -->
+@if($featuredProjects->isNotEmpty())
+<div class="container-fluid pt-5 mb-3">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.student_projects') }}</h4>
+            <a href="/student-projects" class="text-secondary font-weight-medium text-decoration-none">{{ __('site.home_all_projects') }}</a>
+        </div>
+        <div class="row" style="justify-content:flex-start;">
+            @foreach($featuredProjects as $project)
+            <div class="col-md-4 mb-3">
+                <div class="bg-white border p-3 h-100 d-flex flex-column" style="color:#333;">
+                    @if($project->award)
+                        <div style="margin-bottom:6px;">
+                            <span style="background:#e6a817;color:#1a1a1a;font-size:0.7rem;font-weight:700;padding:2px 7px;border-radius:3px;">
+                                <i class="fas fa-trophy mr-1"></i>{{ $project->award }}
+                            </span>
+                        </div>
+                    @endif
+                    <div style="font-weight:700;font-size:0.9rem;margin-bottom:8px;line-height:1.3;">{{ $project->title }}</div>
+                    <div style="font-size:0.78rem;color:#888;margin-bottom:4px;">
+                        @if($project->department)
+                            <span class="mr-2"><i class="fas fa-building mr-1"></i>{{ $project->department }}</span>
+                        @endif
+                        @if($project->year)
+                            <span><i class="far fa-calendar mr-1"></i>{{ $project->year }}</span>
+                        @endif
+                    </div>
+                    @if($project->team_members)
+                        <div style="font-size:0.77rem;color:#666;margin-top:auto;padding-top:6px;">
+                            <i class="fas fa-users mr-1 text-muted"></i>{{ Str::limit($project->team_members, 60) }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+<!-- Student Projects End -->
+
+
+<!-- Quick Links Start -->
+<div class="container-fluid pt-5 mb-5">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.home_quick_links') }}</h4>
+        </div>
+        <div class="row" style="justify-content:flex-start;">
+            @php
+            $quickLinks = [
+                ['url' => '/about',           'icon' => 'fa-university',       'label' => __('site.nav_about_faculty')],
+                ['url' => '/departments',     'icon' => 'fa-building',         'label' => __('site.nav_departments_link')],
+                ['url' => '/lecturers',       'icon' => 'fa-chalkboard-teacher','label' => __('site.nav_lecturers_link')],
+                ['url' => '/research',        'icon' => 'fa-flask',            'label' => __('site.nav_research_activities')],
+                ['url' => '/student-projects','icon' => 'fa-project-diagram',  'label' => __('site.nav_student_projects')],
+                ['url' => '/news',            'icon' => 'fa-rss',              'label' => __('site.nav_news_link')],
+            ];
+            @endphp
+            @foreach($quickLinks as $link)
+            <div class="col-6 col-md-4 col-lg-2 mb-3">
+                <a href="{{ $link['url'] }}" class="text-decoration-none d-block text-center bg-white border p-3"
+                   style="color:#1a4f8a; transition:box-shadow .2s;"
+                   onmouseover="this.style.boxShadow='0 2px 10px rgba(26,79,138,.15)'"
+                   onmouseout="this.style.boxShadow=''">
+                    <i class="fas {{ $link['icon'] }} fa-lg mb-2 d-block" style="color:#1a4f8a;"></i>
+                    <div style="font-size:0.8rem;font-weight:600;line-height:1.2;">{{ $link['label'] }}</div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+<!-- Quick Links End -->
 
 
 @include('footer')

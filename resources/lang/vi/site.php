@@ -1,12 +1,30 @@
 <?php
 
 return [
-    // Navigation
+    // Navigation — top bar
     'nav_home'        => 'Trang chủ',
     'nav_about'       => 'Giới thiệu',
     'nav_login'       => 'Đăng nhập',
     'nav_admin_panel' => 'Trang quản trị',
     'nav_logout'      => 'Đăng xuất',
+
+    // Navigation — main menu
+    'nav_about_dropdown'   => 'Giới thiệu',
+    'nav_about_faculty'    => 'Về Khoa',
+    'nav_faculty_office'   => 'Văn phòng Khoa',
+    'nav_departments_link' => 'Các bộ môn',
+    'nav_lecturers_link'   => 'Giảng viên',
+    'nav_education'        => 'Đào tạo',
+    'nav_training_programs'=> 'Chương trình đào tạo',
+    'nav_admissions'       => 'Tuyển sinh',
+    'nav_admission_info'   => 'Thông tin tuyển sinh',
+    'nav_research_dropdown'=> 'Nghiên cứu',
+    'nav_research_activities'=> 'Hoạt động nghiên cứu',
+    'nav_student_projects' => 'Đề án sinh viên',
+    'nav_news_dropdown'    => 'Tin tức',
+    'nav_news_link'        => 'Tin tức',
+    'nav_announcements'    => 'Thông báo',
+    'nav_contact'          => 'Liên hệ',
 
     // About page sections
     'introduction'    => 'Giới thiệu',
@@ -47,4 +65,16 @@ return [
     'clear_filters'         => 'Xóa lọc',
     'supervisor'            => 'Giảng viên hướng dẫn',
     'no_projects'           => 'Không tìm thấy đề án nào.',
+
+    // Homepage sections
+    'home_faculty_intro'    => 'Giới thiệu Khoa',
+    'home_learn_more'       => 'Xem thêm',
+    'home_our_departments'  => 'Các bộ môn',
+    'home_latest_news'      => 'Tin tức mới nhất',
+    'home_all_news'         => 'Tất cả tin tức',
+    'home_featured_research'=> 'Nghiên cứu nổi bật',
+    'home_all_research'     => 'Tất cả nghiên cứu',
+    'home_all_projects'     => 'Tất cả đề án',
+    'home_quick_links'      => 'Liên kết nhanh',
+    'home_view_all'         => 'Xem tất cả',
 ];
