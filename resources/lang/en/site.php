@@ -20,6 +20,7 @@ return [
     'nav_admission_info'   => 'Admission Information',
     'nav_research_dropdown'=> 'Research',
     'nav_research_activities'=> 'Research Activities',
+    'nav_procedures'       => 'Procedures & Forms',
     'nav_student_projects' => 'Student Projects',
     'nav_news_dropdown'    => 'News',
     'nav_news_link'        => 'News',

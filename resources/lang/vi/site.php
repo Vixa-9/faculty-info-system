@@ -20,6 +20,7 @@ return [
     'nav_admission_info'   => 'Thông tin tuyển sinh',
     'nav_research_dropdown'=> 'Nghiên cứu',
     'nav_research_activities'=> 'Hoạt động nghiên cứu',
+    'nav_procedures'       => 'Quy trình - Biểu mẫu',
     'nav_student_projects' => 'Đề án sinh viên',
     'nav_news_dropdown'    => 'Tin tức',
     'nav_news_link'        => 'Tin tức',

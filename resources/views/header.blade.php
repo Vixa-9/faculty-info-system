@@ -171,6 +171,8 @@
                     </div>
                 </div>
 
+                <a href="https://tgu.edu.vn/topic/?13398" target="_blank" rel="noopener" class="nav-item nav-link">{{ __('site.nav_procedures') }}</a>
+
                 <a href="/student-projects" class="nav-item nav-link">{{ __('site.nav_student_projects') }}</a>
 
                 <div class="nav-item dropdown">
