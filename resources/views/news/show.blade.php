@@ -10,7 +10,7 @@
     <div class="container">
         <a href="/news" class="btn btn-sm btn-secondary mb-3">&larr; Back to news</a>
 
-        <div class="bg-white border p-4">
+        <div class="bg-white border p-4" style="color:#333;">
             @if($news->image)
                 <img class="img-fluid w-100 mb-4" src="{{ $news->image }}" style="max-height:400px; object-fit:cover;" alt="{{ $news->title }}">
             @endif

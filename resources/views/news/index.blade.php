@@ -18,7 +18,7 @@
                         @if($item->image)
                             <img class="img-fluid w-100" src="{{ $item->image }}" style="height:200px; object-fit:cover;" alt="{{ $item->title }}">
                         @endif
-                        <div class="bg-white border border-top-0 p-4">
+                        <div class="bg-white border border-top-0 p-4" style="color:#333;">
                             @if($item->published_at)
                                 <small class="text-muted">{{ $item->published_at->format('d/m/Y') }}</small>
                             @endif

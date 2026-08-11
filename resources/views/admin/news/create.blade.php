@@ -11,17 +11,21 @@
 
             <div class="form-group">
                 <label>Title <span class="text-danger">*</span></label>
-                <input type="text" name="title" value="{{ old('title') }}" class="form-control" placeholder="News title">
+                <input type="text" name="title" value="{{ old('title') }}"
+                    class="form-control @error('title') is-invalid @enderror" placeholder="News title">
+                @error('title')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-group">
                 <label>Summary <span class="text-danger">*</span></label>
-                <textarea name="summary" class="form-control" rows="3">{{ old('summary') }}</textarea>
+                <textarea name="summary" class="form-control @error('summary') is-invalid @enderror" rows="3">{{ old('summary') }}</textarea>
+                @error('summary')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-group">
                 <label>Content <span class="text-danger">*</span></label>
-                <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
+                <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
+                @error('content')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
             <div class="form-group">
