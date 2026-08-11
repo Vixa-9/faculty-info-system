@@ -67,6 +67,16 @@ return [
     'supervisor'            => 'Supervisor',
     'no_projects'           => 'No projects found for the selected filters.',
 
+    // Contact page
+    'contact_us'              => 'Contact Us',
+    'contact_address'         => 'Address',
+    'contact_email'           => 'Email',
+    'contact_phone'           => 'Phone',
+    'contact_office_location' => 'Office Location',
+    'contact_faculty_office'  => 'Faculty Office',
+    'contact_it_department'   => 'IT Department',
+    'contact_map_link'        => 'View on map',
+
     // Homepage sections
     'home_faculty_intro'    => 'Faculty Introduction',
     'home_learn_more'       => 'Learn more',

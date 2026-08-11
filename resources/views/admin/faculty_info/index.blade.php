@@ -20,6 +20,21 @@
             </div>
             @endforeach
         </div>
+        <div class="card-body border-top pt-4" id="contact-section">
+            <h5 class="font-weight-bold text-primary mb-3">
+                <i class="fas fa-address-card mr-2"></i>Contact Information
+            </h5>
+            @foreach($contactFields as $key => $label)
+            <div class="form-group">
+                <label class="font-weight-bold">{{ $label }}</label>
+                <input type="text"
+                       name="fields[{{ $key }}]"
+                       value="{{ old('fields.' . $key, $data[$key] ?? '') }}"
+                       class="form-control"
+                       placeholder="{{ $label }}">
+            </div>
+            @endforeach
+        </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Save changes</button>
         </div>

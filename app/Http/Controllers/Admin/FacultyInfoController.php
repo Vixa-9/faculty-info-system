@@ -17,27 +17,44 @@ class FacultyInfoController extends Controller
         'office_info'    => 'Office Information',
     ];
 
+    private const CONTACT_FIELDS = [
+        'contact_address'             => 'Address',
+        'contact_email'               => 'Faculty Email',
+        'contact_phone'               => 'Faculty Phone',
+        'contact_office_location'     => 'Office Location',
+        'contact_it_department_email' => 'IT Department Email',
+        'contact_it_department_phone' => 'IT Department Phone',
+    ];
+
+    private function allAllowedKeys(): array
+    {
+        return array_merge(array_keys(self::FIELDS), array_keys(self::CONTACT_FIELDS));
+    }
+
     public function index()
     {
-        $data = FacultyInfo::whereIn('key', array_keys(self::FIELDS))
-            ->pluck('value', 'key');
+        $allKeys = $this->allAllowedKeys();
+        $data = FacultyInfo::whereIn('key', $allKeys)->pluck('value', 'key');
 
         return view('admin.faculty_info.index', [
-            'title'  => 'Faculty Information',
-            'fields' => self::FIELDS,
-            'data'   => $data,
+            'title'         => 'Faculty Information',
+            'fields'        => self::FIELDS,
+            'contactFields' => self::CONTACT_FIELDS,
+            'data'          => $data,
         ]);
     }
 
     public function update(Request $request)
     {
         $request->validate([
-            'fields'   => 'required|array',
+            'fields'   => 'nullable|array',
             'fields.*' => 'nullable|string',
         ]);
 
-        foreach ($request->input('fields') as $key => $value) {
-            if (!array_key_exists($key, self::FIELDS)) {
+        $allowed = $this->allAllowedKeys();
+
+        foreach ($request->input('fields', []) as $key => $value) {
+            if (!in_array($key, $allowed)) {
                 continue;
             }
             FacultyInfo::updateOrCreate(

@@ -67,6 +67,16 @@ return [
     'supervisor'            => 'Giảng viên hướng dẫn',
     'no_projects'           => 'Không tìm thấy đề án nào.',
 
+    // Contact page
+    'contact_us'              => 'Liên hệ',
+    'contact_address'         => 'Địa chỉ',
+    'contact_email'           => 'Email',
+    'contact_phone'           => 'Điện thoại',
+    'contact_office_location' => 'Văn phòng',
+    'contact_faculty_office'  => 'Văn phòng Khoa',
+    'contact_it_department'   => 'Bộ môn CNTT',
+    'contact_map_link'        => 'Xem bản đồ',
+
     // Homepage sections
     'home_faculty_intro'    => 'Giới thiệu Khoa',
     'home_learn_more'       => 'Xem thêm',

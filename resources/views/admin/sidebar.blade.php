@@ -155,14 +155,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="/admin/contacts/add" class="nav-link {{ request()->is('admin/contacts*') ? 'active' : '' }}">
-                        <i class="fas fa-address-card nav-icon"></i>
-                        <p>Contact Management</p>
-                    </a>
-                </li>
-
-                <li class="nav-item mt-3 border-top pt-2">
+<li class="nav-item mt-3 border-top pt-2">
                     <a href="/" class="nav-link">
                         <i class="fas fa-globe nav-icon"></i>
                         <p>View Site</p>

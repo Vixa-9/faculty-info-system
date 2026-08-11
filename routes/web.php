@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\ResearchActivityController;
 use App\Http\Controllers\ResearchPublicController;
 use App\Http\Controllers\Admin\StudentProjectController;
 use App\Http\Controllers\StudentProjectPublicController;
+use App\Http\Controllers\ContactController;
 
 
 
@@ -168,6 +169,7 @@ Route::get('/research', [ResearchPublicController::class, 'index']);
 Route::get('/student-projects', [StudentProjectPublicController::class, 'index']);
 Route::get('/departments', [DepartmentPublicController::class, 'index']);
 Route::get('/departments/{department:slug}', [DepartmentPublicController::class, 'show']);
+Route::get('/contact', [ContactController::class, 'index']);
 
 
 

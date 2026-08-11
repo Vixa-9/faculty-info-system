@@ -199,7 +199,7 @@
                     </div>
                 </div>
 
-                <a href="contact.html" class="nav-item nav-link">{{ __('site.nav_contact') }}</a>
+                <a href="/contact" class="nav-item nav-link">{{ __('site.nav_contact') }}</a>
 
             </div>
 
