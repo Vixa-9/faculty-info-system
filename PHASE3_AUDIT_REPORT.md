@@ -81,10 +81,10 @@
 
 ## TODO (Remaining)
 
-| #   | Description                                                                                      | Priority |
-| --- | ------------------------------------------------------------------------------------------------ | -------- |
-| 1   | Fix `admin/files/lis` route typo → `list` and fix sidebar link                                   | Low      |
-| 2   | Add image placeholder to `news/show.blade.php` when `$news->image` is null                       | Low      |
-| 3   | Standardize news image max size to 2 MB (currently 8 MB in news forms vs 2 MB in other forms)    | Low      |
-| 4   | `contact.html` link in navbar points to static file (404) : replace with real route or remove    | Low      |
-| 5   | Pagination row number resets to 1 on page 2+ (uses `$loop->index + 1` style key) in admin tables | Cosmetic |
+| #   | Description                                                                                         | Priority | Status                                    |
+| --- | --------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------- |
+| 1   | Fix `admin/files/lis` route typo → `list` and fix sidebar link                                      | Low      | ✅ Fixed                                  |
+| 2   | Add image placeholder to `news/show.blade.php` when `$news->image` is null                          | Low      | ✅ Fixed                                  |
+| 3   | Standardize news image max size to 2 MB (label + JS, controller already at 2 MB)                    | Low      | ✅ Fixed                                  |
+| 4   | Pagination row number resets to 1 on page 2+ — 4 admin tables (research, projects, news, lecturers) | Cosmetic | ✅ Fixed                                  |
+| 5   | `contact.html` link in navbar points to static file (404) : replace with real route or remove       | Low      | ⏳ Pending : awaiting supervisor decision |

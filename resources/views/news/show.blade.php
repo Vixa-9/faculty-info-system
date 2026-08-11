@@ -13,6 +13,10 @@
         <div class="bg-white border p-4" style="color:#333;">
             @if($news->image)
                 <img class="img-fluid w-100 mb-4" src="{{ $news->image }}" style="max-height:400px; object-fit:cover;" alt="{{ $news->title }}">
+            @else
+                <div class="mb-4" style="height:200px;background:#e9ecef;display:flex;align-items:center;justify-content:center;">
+                    <i class="fas fa-newspaper fa-4x text-muted"></i>
+                </div>
             @endif
 
             <h2 class="font-weight-bold text-uppercase">{{ $news->title }}</h2>

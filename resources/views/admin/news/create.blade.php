@@ -32,7 +32,7 @@
                 <label>Image</label>
                 <input type="file" name="image" class="form-control" id="image" onchange="loadfile(event)">
                 <img id="image_show" style="width: 200px; height: 100px; margin-top:8px; display:none;" alt="preview">
-                <small class="text-muted">Max size: 8 MB. Allowed: jpeg, bmp, png.</small>
+                <small class="text-muted">Max size: 2 MB. Allowed: jpeg, bmp, png.</small>
             </div>
 
             <div class="form-group">
@@ -70,9 +70,9 @@
 
         document.getElementById('newsForm').addEventListener('submit', function(e) {
             var file = document.getElementById('image').files[0];
-            if (file && file.size > 8 * 1024 * 1024) {
+            if (file && file.size > 2 * 1024 * 1024) {
                 e.preventDefault();
-                alert('File too large. Maximum size: 8 MB.');
+                alert('File too large. Maximum size: 2 MB.');
             }
         });
     </script>

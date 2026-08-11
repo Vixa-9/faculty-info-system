@@ -32,7 +32,7 @@
         <tbody>
         @foreach($news as $key => $item)
             <tr>
-                <td>{{ $key + 1 }}</td>
+                <td>{{ ($news->currentPage() - 1) * $news->perPage() + $key + 1 }}</td>
                 <td>{{ $item->title }}</td>
                 <td>
                     @if($item->image)

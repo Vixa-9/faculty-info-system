@@ -22,7 +22,7 @@
             <tbody>
             @foreach($activities as $key => $activity)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ ($activities->currentPage() - 1) * $activities->perPage() + $key + 1 }}</td>
                     <td>{{ $activity->title }}</td>
                     <td>
                         @php

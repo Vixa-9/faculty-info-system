@@ -149,7 +149,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="/admin/files/outline" class="nav-link {{ request()->is('admin/files*') ? 'active' : '' }}">
+                    <a href="/admin/files/list" class="nav-link {{ request()->is('admin/files*') ? 'active' : '' }}">
                         <i class="fas fa-upload nav-icon"></i>
                         <p>File Upload Management</p>
                     </a>

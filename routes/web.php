@@ -138,7 +138,7 @@ Route::middleware(['auth'])->group(function () {
         {
             Route::get('add',[UploadFileController::class,'create']);
             Route::post('add', [UploadFileController::class, 'store']);
-            Route::get('lis', [UploadFileController::class, 'index']);
+            Route::get('list', [UploadFileController::class, 'index']);
             Route::get('edit/{file}',[UploadFileController::class,'show']);
             Route::post('edit/{file}', [UploadFileController::class, 'update']);
             Route::DELETE('destroy', [UploadFileController::class, 'destroy']);

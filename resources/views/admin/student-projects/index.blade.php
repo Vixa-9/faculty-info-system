@@ -22,7 +22,7 @@
             <tbody>
             @foreach($projects as $key => $project)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}</td>
                     <td>
                         <div style="font-weight:600;">{{ $project->title }}</div>
                         @if($project->team_members)

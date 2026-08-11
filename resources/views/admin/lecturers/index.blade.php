@@ -23,7 +23,7 @@
             <tbody>
             @foreach($lecturers as $key => $lecturer)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ ($lecturers->currentPage() - 1) * $lecturers->perPage() + $key + 1 }}</td>
                     <td>
                         @if($lecturer->photo)
                             <img src="{{ $lecturer->photo }}" width="50" height="50" style="object-fit:cover;border-radius:50%;">
