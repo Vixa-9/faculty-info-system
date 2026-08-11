@@ -17,6 +17,7 @@
         <a class="btn btn-success" href="/admin/news/create">Add News</a>
     </div>
 
+    <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
@@ -64,6 +65,7 @@
         @endforeach
         </tbody>
     </table>
+    </div>
     <div class="card-footer clearfix">
         {!! $news->links("pagination::bootstrap-4") !!}
     </div>

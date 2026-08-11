@@ -7,6 +7,7 @@
                 <i class="fas fa-plus mr-1"></i>Add Activity
             </a>
         </div>
+        <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover mb-0">
             <thead>
                 <tr>
@@ -53,6 +54,7 @@
             @endforeach
             </tbody>
         </table>
+        </div>
         <div class="p-3">
             {!! $activities->links("pagination::bootstrap-4") !!}
         </div>

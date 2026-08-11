@@ -13,7 +13,7 @@
         <div class="section-title">
             <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.introduction') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $info['introduction'] !!}
         </div>
         @endif
@@ -22,7 +22,7 @@
         <div class="section-title">
             <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.vision') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $info['vision'] !!}
         </div>
         @endif
@@ -31,7 +31,7 @@
         <div class="section-title">
             <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.mission') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $info['mission'] !!}
         </div>
         @endif
@@ -40,7 +40,7 @@
         <div class="section-title">
             <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.history') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $info['history'] !!}
         </div>
         @endif
@@ -49,7 +49,7 @@
         <div class="section-title">
             <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.org_structure') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $info['org_structure'] !!}
         </div>
         @endif
@@ -58,7 +58,7 @@
         <div class="section-title">
             <h4 class="m-0 text-uppercase font-weight-bold">{{ __('site.contact_office') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $info['office_info'] !!}
         </div>
         @endif

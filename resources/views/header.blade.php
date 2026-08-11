@@ -49,13 +49,19 @@
         font-size: inherit;
     }
     .navbar-nav .nav-link {
-        font-size: 0.82rem;
-        padding-left: 0.55rem;
-        padding-right: 0.55rem;
+        font-size: 0.78rem;
+        padding-left: 0.45rem;
+        padding-right: 0.45rem;
         white-space: nowrap;
     }
     .navbar-nav .dropdown-toggle {
-        font-size: 0.82rem;
+        font-size: 0.78rem;
+    }
+    .nav-lang-mobile { display: flex; align-items: center; }
+    .nav-lang-desktop { display: none; }
+    @media (min-width: 1200px) {
+        .nav-lang-mobile { display: none !important; }
+        .nav-lang-desktop { display: flex !important; align-items: center; }
     }
 </style>
  <script language='javascript'>
@@ -127,15 +133,25 @@
 
 <!-- Navbar Start -->
 <div class="container-fluid p-0">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
-        <a href="index.html" class="navbar-brand d-block d-lg-none">
+    <nav class="navbar navbar-expand-xl bg-dark navbar-dark py-2 py-xl-0 px-xl-3">
+        <a href="index.html" class="navbar-brand d-block d-xl-none">
             <h1 class="m-0 display-4 text-uppercase text-primary">{{$company->description}}</h1>
         </a>
+        {{-- Mobile language switcher (always visible outside collapse) --}}
+        @php $currentLocale = app()->getLocale(); @endphp
+        <div class="nav-lang-mobile ml-auto mr-2" style="gap:5px;">
+            <a href="/language/en"
+               style="font-size:0.73rem;font-weight:700;padding:3px 7px;border-radius:3px;text-decoration:none;border:1px solid rgba(255,255,255,0.4);
+                      {{ $currentLocale === 'en' ? 'background:#f6c500;color:#1a1a1a;border-color:#f6c500;' : 'background:transparent;color:#fff;' }}">EN</a>
+            <a href="/language/vi"
+               style="font-size:0.73rem;font-weight:700;padding:3px 7px;border-radius:3px;text-decoration:none;border:1px solid rgba(255,255,255,0.4);
+                      {{ $currentLocale === 'vi' ? 'background:#f6c500;color:#1a1a1a;border-color:#f6c500;' : 'background:transparent;color:#fff;' }}">VI</a>
+        </div>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+        <div class="collapse navbar-collapse justify-content-between px-0 px-xl-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
 
                 <a href="/" class="nav-item nav-link">{{ __('site.nav_home') }}</a>
@@ -187,41 +203,39 @@
 
             </div>
 
-            <div class="input-group ml-auto d-none d-lg-flex" style="width: 50%; max-width: 190px;">
-                <input type="text" class="form-control border-0" placeholder="Keyword">
-                <div class="input-group-append">
-                    <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-
             <div class="ml-3 d-flex align-items-center" style="gap:6px;">
 
-                {{-- Language switcher --}}
+                {{-- Language switcher (desktop only — mobile version is outside the collapse) --}}
                 @php $currentLocale = app()->getLocale(); @endphp
-                <a href="/language/en"
-                   style="font-size:0.75rem;font-weight:700;padding:4px 8px;border-radius:3px;text-decoration:none;border:1px solid rgba(255,255,255,0.4);
-                          {{ $currentLocale === 'en' ? 'background:#f6c500;color:#1a1a1a;border-color:#f6c500;' : 'background:transparent;color:#fff;' }}">
-                    EN
-                </a>
-                <a href="/language/vi"
-                   style="font-size:0.75rem;font-weight:700;padding:4px 8px;border-radius:3px;text-decoration:none;border:1px solid rgba(255,255,255,0.4);margin-right:8px;
-                          {{ $currentLocale === 'vi' ? 'background:#f6c500;color:#1a1a1a;border-color:#f6c500;' : 'background:transparent;color:#fff;' }}">
-                    VI
-                </a>
+                <span class="nav-lang-desktop" style="gap:4px;margin-right:8px;">
+                    <a href="/language/en"
+                       style="font-size:0.75rem;font-weight:700;padding:4px 8px;border-radius:3px;text-decoration:none;border:1px solid rgba(255,255,255,0.4);
+                              {{ $currentLocale === 'en' ? 'background:#f6c500;color:#1a1a1a;border-color:#f6c500;' : 'background:transparent;color:#fff;' }}">
+                        EN
+                    </a>
+                    <a href="/language/vi"
+                       style="font-size:0.75rem;font-weight:700;padding:4px 8px;border-radius:3px;text-decoration:none;border:1px solid rgba(255,255,255,0.4);
+                              {{ $currentLocale === 'vi' ? 'background:#f6c500;color:#1a1a1a;border-color:#f6c500;' : 'background:transparent;color:#fff;' }}">
+                        VI
+                    </a>
+                </span>
 
                 @auth
-                    <a href="/admin" style="background:#f6c500;color:#1a1a1a;font-weight:600;font-size:0.8rem;padding:6px 14px;border-radius:3px;text-decoration:none;margin-right:8px;white-space:nowrap;">
-                        <i class="fas fa-tachometer-alt mr-1"></i>{{ __('site.nav_admin_panel') }}
+                    <a href="/admin" title="{{ __('site.nav_admin_panel') }}"
+                       style="background:#f6c500;color:#1a1a1a;font-size:1rem;padding:6px 10px;border-radius:3px;text-decoration:none;line-height:1;">
+                        <i class="fas fa-tachometer-alt"></i>
                     </a>
                     <form action="/admin/logout" method="POST" class="m-0">
                         @csrf
-                        <button type="submit" style="background:transparent;border:1px solid rgba(255,255,255,0.5);color:#fff;font-size:0.8rem;padding:6px 14px;border-radius:3px;cursor:pointer;white-space:nowrap;">
-                            <i class="fas fa-sign-out-alt mr-1"></i>{{ __('site.nav_logout') }}
+                        <button type="submit" title="{{ __('site.nav_logout') }}"
+                                style="background:transparent;border:1px solid rgba(255,255,255,0.5);color:#fff;font-size:1rem;padding:6px 10px;border-radius:3px;cursor:pointer;line-height:1;">
+                            <i class="fas fa-sign-out-alt"></i>
                         </button>
                     </form>
                 @else
-                    <a href="/admin/users/login" style="background:#f6c500;color:#1a1a1a;font-weight:600;font-size:0.8rem;padding:6px 14px;border-radius:3px;text-decoration:none;white-space:nowrap;">
-                        <i class="fas fa-sign-in-alt mr-1"></i>{{ __('site.nav_login') }}
+                    <a href="/admin/users/login" title="{{ __('site.nav_login') }}"
+                       style="background:#f6c500;color:#1a1a1a;font-size:1rem;padding:6px 10px;border-radius:3px;text-decoration:none;line-height:1;">
+                        <i class="fas fa-sign-in-alt"></i>
                     </a>
                 @endauth
             </div>

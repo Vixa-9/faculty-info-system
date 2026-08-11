@@ -51,7 +51,7 @@
                 </div>
             @endif
 
-            <div style="flex:1;">
+            <div style="flex:1;min-width:0;overflow-wrap:break-word;">
                 @php
                     $badgeColor = [
                         'Research Project' => '#1a4f8a',

@@ -14,7 +14,7 @@
         </div>
 
         @if($department->introduction)
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $department->introduction !!}
         </div>
         @endif
@@ -23,7 +23,7 @@
         <div class="section-title mt-3">
             <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">{{ __('site.training_programs') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $department->training_programs !!}
         </div>
         @endif
@@ -32,7 +32,7 @@
         <div class="section-title mt-3">
             <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">{{ __('site.dept_research') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! $department->research_activities !!}
         </div>
         @endif
@@ -80,7 +80,7 @@
         <div class="section-title mt-3">
             <h4 class="m-0 text-uppercase font-weight-bold" style="font-size:1rem;">{{ __('site.contact') }}</h4>
         </div>
-        <div class="bg-white border p-4 mb-4" style="color:#333;">
+        <div class="bg-white border p-4 mb-4" style="color:#333;overflow-x:auto;">
             {!! nl2br(e($department->contact_info)) !!}
         </div>
         @endif

@@ -29,7 +29,7 @@
 
             <hr>
 
-            <div class="news-content">
+            <div class="news-content" style="overflow-x:auto;">
                 {!! $news->content !!}
             </div>
         </div>
