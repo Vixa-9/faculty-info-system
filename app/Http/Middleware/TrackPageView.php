@@ -12,7 +12,7 @@ class TrackPageView
     {
         $response = $next($request);
 
-        if ($request->isMethod('GET') && !$request->is('admin*') && !$request->is('api*')) {
+        if ($request->isMethod('GET') && !$request->is('admin*') && !$request->is('api*') && !$request->is('language/*')) {
             PageView::create([
                 'page_url'   => $request->path() === '/' ? '/' : '/' . $request->path(),
                 'page_title' => null,
