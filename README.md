@@ -52,11 +52,12 @@ Default credentials: set in `database/seeders/DatabaseSeeder.php`
 
 ## Branch Structure
 
-| Branch   | Purpose                            |
-| -------- | ---------------------------------- |
-| `main`   | Stable : production-ready releases |
-| `phase2` | Active development (current)       |
-| `dev`    | General development                |
+| Branch    | Purpose                            |
+| --------- | ---------------------------------- |
+| `main`    | Stable : production-ready releases |
+| `phase3`  | Active development (current)       |
+| `phase2`  | Phase 2 complete                   |
+| `dev`     | General development                |
 
 ---
 
@@ -82,6 +83,16 @@ Default credentials: set in `database/seeders/DatabaseSeeder.php`
 - **Homepage Improvements** : Dynamic sections: Faculty Introduction, Our Departments, Latest News, Featured Research, Student Projects showcase, Quick Links
 - **Navbar Restructuring** : Hardcoded bilingual navbar replacing dynamic DB-driven menu
 
+### Phase 3
+
+- **Bug Fixes** : 4 bugs resolved — white text on white background (news pages), missing inline validation (`@error` / `is-invalid`) on news forms, `old()` fallback missing on edit form, route typo `/admin/files/lis` → `list`
+- **Responsive UI** : 5 issues fixed — EN/VI switcher hidden on mobile, navbar overflow on iPad/small desktop (icon-only auth buttons, reduced padding/font, removed non-functional search box), admin tables wrapped in `table-responsive`, CKEditor content blocks `overflow-x:auto`, research flex layout `min-width:0`
+- **Contact Page** : New public page `/contact` — editable via admin Faculty Info panel (address, email, phone, office location, IT department contact). Google Maps embed. Bilingual labels.
+- **Performance Optimizations** : `config:cache`, `route:cache`, `view:cache` enabled. DB indexes added on `page_views.visited_at`, `news.active`/`published_at`, `research_activities.type`, `student_projects.department`/`year`.
+- **Security Improvements** : `SecurityHeaders` middleware (X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Referrer-Policy). Full CSRF audit — all POST forms verified. Escaping audit — all `{!! !!}` usage justified.
+- **Enhanced Analytics Dashboard** : Today / this week / this month counters. Line chart (30 days). Pie chart by section (Home, News, Research, Departments, Lecturers, Student Projects, About, Other). Top 10 pages table. `/language/*` excluded from tracking.
+- **UAT** : 19/19 scenarios passed across 3 user profiles (Faculty Office Staff, Lecturer, Student).
+
 ---
 
 ## Public Navbar Structure
@@ -99,19 +110,32 @@ Admissions ▾
   └ Admission Information  → (external)
 Research ▾
   └ Research Activities    → /research
-Quy trình - Biểu mẫu      → https://tgu.edu.vn/topic/?13398 (new tab)
+Procedures & Forms         → https://tgu.edu.vn/topic/?13398 (new tab)
 Student Projects           → /student-projects
 News ▾
   └ News                   → /news
   └ Announcements          → (external)
-Contact                    → contact.html
+Contact                    → /contact
 ```
 
 ---
 
 ## Admin Sidebar
 
-Analytics · Faculty Info · Lecturers · Departments · Research Activities · Student Projects · News Management · Article Management · Slide Management · File Upload · Contact Management
+Analytics · Faculty Info · Lecturers · Departments · Research Activities · Student Projects · News Management · Article Management · Slide Management · File Upload Management
+
+---
+
+## Reports
+
+| File                          | Content                                              |
+| ----------------------------- | ---------------------------------------------------- |
+| `PHASE2_REPORT.md`            | Full Phase 2 development report                      |
+| `PHASE3_REPORT.md`            | Full Phase 3 development report                      |
+| `PHASE3_AUDIT_REPORT.md`      | Bug audit findings and fixes                         |
+| `PHASE3_RESPONSIVE_REPORT.md` | Responsive design audit and fixes                    |
+| `PHASE3_PERF_SECURITY_REPORT.md` | Performance and security review                   |
+| `UAT_REPORT.md`               | User Acceptance Testing results (19/19 passed)       |
 
 ---
 
