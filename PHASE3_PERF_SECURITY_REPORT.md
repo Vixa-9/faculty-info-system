@@ -1,26 +1,26 @@
-# Rapport Performance & Sécurité : Phase 3
+# Performance & Security Report : Phase 3
 
-**Date :** 2026-08-16 | **Branche :** `phase3`
+**Date:** 2026-08-16 | **Branch:** `phase3`
 
 ---
 
 ## PERFORMANCE
 
-| #   | Vérification                                 | Statut     | Action                                                                  |
+| #   | Check                                        | Status     | Action                                                                  |
 | --- | -------------------------------------------- | ---------- | ----------------------------------------------------------------------- |
-| 1a  | `config:cache`                               | ✅ OK      | Exécuté : config compilée                                               |
-| 1b  | `route:cache`                                | ✅ OK      | Exécuté : routes compilées                                              |
-| 1c  | `view:cache`                                 | ✅ OK      | Exécuté : vues Blade compilées                                          |
-| 1d  | Déprecation PHP 8.5 `PDO::MYSQL_ATTR_SSL_CA` | ⚠️ Warning | Non-bloquant, vient de `config/database.php:62` : hors scope            |
-| 2   | Index BDD manquants                          | ✅ Corrigé | Migration créée et exécutée                                             |
-| 3   | Symlink `public/storage`                     | ✅ Existe  | Aucune action requise                                                   |
-| 4   | Pagination contrôleurs publics               | ✅ OK      | News: `paginate(10)`, Research: `paginate(10)`, Projects: `paginate(9)` |
+| 1a  | `config:cache`                               | ✅ OK      | Executed: config compiled                                               |
+| 1b  | `route:cache`                                | ✅ OK      | Executed: routes compiled                                               |
+| 1c  | `view:cache`                                 | ✅ OK      | Executed: Blade views compiled                                          |
+| 1d  | PHP 8.5 deprecation `PDO::MYSQL_ATTR_SSL_CA` | ⚠️ Warning | Non-blocking, from `config/database.php:62` : out of scope              |
+| 2   | Missing DB indexes                           | ✅ Fixed   | Migration created and executed                                          |
+| 3   | Symlink `public/storage`                     | ✅ Exists  | No action required                                                      |
+| 4   | Public controller pagination                 | ✅ OK      | News: `paginate(10)`, Research: `paginate(10)`, Projects: `paginate(9)` |
 
-### Index ajoutés
+### Indexes Added
 
-Migration : `2026_08_16_000001_add_performance_indexes.php`
+Migration: `2026_08_16_000001_add_performance_indexes.php`
 
-| Table                 | Colonne(s)               |
+| Table                 | Column(s)                |
 | --------------------- | ------------------------ |
 | `page_views`          | `visited_at`             |
 | `news`                | `active`, `published_at` |
@@ -29,29 +29,29 @@ Migration : `2026_08_16_000001_add_performance_indexes.php`
 
 ---
 
-## SÉCURITÉ
+## SECURITY
 
-| #   | Vérification                                | Statut     | Action                                                                 |
-| --- | ------------------------------------------- | ---------- | ---------------------------------------------------------------------- |
-| 5   | Token `@csrf` sur tous les formulaires POST | ✅ OK      | Tous vérifiés : formulaires GET (search) exemptés                      |
-| 6   | Échappement données utilisateur             | ✅ OK      | Voir détail ci-dessous                                                 |
-| 7   | `.env` dans `.gitignore` / clés hardcodées  | ✅ OK      | `.env` + `.env.backup` dans `.gitignore`, aucune clé hardcodée trouvée |
-| 8   | Headers HTTP de sécurité                    | ✅ Corrigé | Middleware `SecurityHeaders` créé et enregistré globalement            |
+| #   | Check                                       | Status     | Action                                                              |
+| --- | ------------------------------------------- | ---------- | ------------------------------------------------------------------- |
+| 5   | `@csrf` token on all POST forms             | ✅ OK      | All verified: GET (search) forms exempt                             |
+| 6   | User data escaping                          | ✅ OK      | See detail below                                                    |
+| 7   | `.env` in `.gitignore` / hardcoded keys     | ✅ OK      | `.env` + `.env.backup` in `.gitignore`, no hardcoded keys found     |
+| 8   | HTTP security headers                       | ✅ Fixed   | `SecurityHeaders` middleware created and registered globally        |
 
-### Détail `{!! !!}` : tous légitimes
+### `{!! !!}` Detail — all legitimate
 
-| Fichier                                 | Usage                                 | Justification                       |
-| --------------------------------------- | ------------------------------------- | ----------------------------------- |
-| `faculty/about.blade.php`               | `$info['introduction']` etc.          | Contenu CKEditor entré par admin    |
-| `faculty/departments/show.blade.php`    | `$department->introduction` etc.      | Contenu CKEditor entré par admin    |
-| `faculty/departments/show.blade.php:84` | `nl2br(e($department->contact_info))` | Échappé avec `e()` avant affichage  |
-| `faculty/departments/index.blade.php`   | `Str::limit(strip_tags(...))`         | HTML strippé avant affichage        |
-| `news/show.blade.php`                   | `$news->content`                      | Contenu CKEditor entré par admin    |
-| Vues avec pagination                    | `$paginator->links()`                 | Output interne du framework Laravel |
+| File                                    | Usage                                 | Justification                        |
+| --------------------------------------- | ------------------------------------- | ------------------------------------ |
+| `faculty/about.blade.php`               | `$info['introduction']` etc.          | Admin-entered CKEditor content       |
+| `faculty/departments/show.blade.php`    | `$department->introduction` etc.      | Admin-entered CKEditor content       |
+| `faculty/departments/show.blade.php:84` | `nl2br(e($department->contact_info))` | Escaped with `e()` before display    |
+| `faculty/departments/index.blade.php`   | `Str::limit(strip_tags(...))`         | HTML stripped before display         |
+| `news/show.blade.php`                   | `$news->content`                      | Admin-entered CKEditor content       |
+| Pagination views                        | `$paginator->links()`                 | Laravel framework internal output    |
 
-### Headers de sécurité ajoutés
+### Security Headers Added
 
-Fichier : `app/Http/Middleware/SecurityHeaders.php` : enregistré dans le stack global (`Kernel.php`)
+File: `app/Http/Middleware/SecurityHeaders.php` — registered in the global middleware stack (`Kernel.php`)
 
 ```
 X-Frame-Options: SAMEORIGIN
@@ -62,10 +62,10 @@ Referrer-Policy: strict-origin-when-cross-origin
 
 ---
 
-## Fichiers modifiés / créés
+## Files Modified / Created
 
-| Fichier                                                             | Type                                 |
-| ------------------------------------------------------------------- | ------------------------------------ |
-| `app/Http/Middleware/SecurityHeaders.php`                           | Créé                                 |
-| `app/Http/Kernel.php`                                               | Modifié : SecurityHeaders enregistré |
-| `database/migrations/2026_08_16_000001_add_performance_indexes.php` | Créé + migré                         |
+| File                                                                | Type                                  |
+| ------------------------------------------------------------------- | ------------------------------------- |
+| `app/Http/Middleware/SecurityHeaders.php`                           | Created                               |
+| `app/Http/Kernel.php`                                               | Modified: SecurityHeaders registered  |
+| `database/migrations/2026_08_16_000001_add_performance_indexes.php` | Created + migrated                    |
