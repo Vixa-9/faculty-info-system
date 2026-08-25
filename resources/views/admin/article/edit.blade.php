@@ -40,7 +40,13 @@
                 <div class="form-group">
                     <label for="image">Article Image</label>
                     <input type="file" name="image" class="form-control" id="image" onchange="loadfile(event)">
-                    <img src="{{ $art->image}}" id="image_show"/ style="width: 150px; height: 100px" alt="image" >
+                    @if($art->image)
+                        <img src="{{ $art->image }}" id="image_show" style="width:150px;height:100px;object-fit:cover;margin-top:8px;display:block;" alt="current image"
+                             onerror="this.style.display='none';">
+                        <small class="text-muted">Current image — upload a new one to replace it.</small>
+                    @else
+                        <img id="image_show" style="width:150px;height:100px;object-fit:cover;margin-top:8px;display:none;" alt="">
+                    @endif
                 </div>
 
                 <div class="form-group">

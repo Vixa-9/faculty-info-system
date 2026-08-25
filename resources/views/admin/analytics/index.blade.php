@@ -38,7 +38,7 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-chart-area mr-1"></i>Visits — last 30 days</h3>
+                <h3 class="card-title"><i class="fas fa-chart-area mr-1"></i>Visits (last 30 days)</h3>
             </div>
             <div class="card-body">
                 <canvas id="lineChart" height="100"></canvas>

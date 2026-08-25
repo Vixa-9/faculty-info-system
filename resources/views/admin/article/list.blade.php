@@ -42,11 +42,14 @@
                 <td>{{$art->name}}</td>
                 <td>{{$art->menu->name}}</td>
                 <td>
-                    <div id="image_show">
-                        <a href="{{ $art->image}}" target="_blank">
-                            <img src="{{ $art->image}}" width="100px">
+                    @if($art->image)
+                        <a href="{{ $art->image }}" target="_blank">
+                            <img src="{{ $art->image }}" width="100px" style="object-fit:cover;height:60px;"
+                                 onerror="this.parentElement.outerHTML='<span class=\'text-muted small\'>No image</span>';">
                         </a>
-                    </div>
+                    @else
+                        <span class="text-muted small">No image</span>
+                    @endif
                 </td>
                 <input type="hidden" name="image" value="{{ $art->image}}" id="image">
 
