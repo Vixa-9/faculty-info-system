@@ -134,8 +134,8 @@
 <!-- Navbar Start -->
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-xl bg-dark navbar-dark py-2 py-xl-0 px-xl-3">
-        <a href="index.html" class="navbar-brand d-block d-xl-none">
-            <h1 class="m-0 display-4 text-uppercase text-primary">{{$company->description}}</h1>
+        <a href="/" class="navbar-brand d-block d-xl-none">
+            <h1 class="m-0 display-4 text-uppercase text-primary">{{ __('site.university_name') }}</h1>
         </a>
         {{-- Mobile language switcher (always visible outside collapse) --}}
         @php $currentLocale = app()->getLocale(); @endphp
@@ -176,7 +176,7 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ __('site.nav_admissions') }}</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                        <a href="#" class="dropdown-item">{{ __('site.nav_admission_info') }}</a>
+                        <a href="https://tgu.edu.vn" target="_blank" rel="noopener" class="dropdown-item">{{ __('site.nav_admission_info') }}</a>
                     </div>
                 </div>
 

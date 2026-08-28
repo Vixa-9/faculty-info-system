@@ -1,6 +1,10 @@
 <?php
 
 return [
+    // Institution names
+    'university_name' => 'TRƯỜNG ĐẠI HỌC TIỀN GIANG',
+    'faculty_name'    => 'KHOA KỸ THUẬT CÔNG NGHỆ',
+
     // Navigation — top bar
     'nav_home'        => 'Trang chủ',
     'nav_about'       => 'Giới thiệu',

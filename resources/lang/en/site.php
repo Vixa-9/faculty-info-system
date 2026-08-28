@@ -1,6 +1,10 @@
 <?php
 
 return [
+    // Institution names
+    'university_name' => 'TIEN GIANG UNIVERSITY',
+    'faculty_name'    => 'Faculty of Engineering and Technology',
+
     // Navigation — top bar
     'nav_home'        => 'Home Page',
     'nav_about'       => 'About',

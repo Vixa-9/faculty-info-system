@@ -99,10 +99,10 @@
     <div class="container">
         <div class="row align-items-center bg-dark">
             <div class="col-12">
-                <div class="d-flex justify-content-between">
-                    <div class="bg-primary text-dark text-center font-weight-medium py-2" style="width: 170px;">Featured News</div>
-                    <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
-                         style="width: calc(100% - 170px); padding-right: 90px;">
+                <div class="d-flex align-items-center" style="overflow:hidden;">
+                    <div class="bg-primary text-dark text-center font-weight-medium py-2 flex-shrink-0 d-none d-sm-flex align-items-center justify-content-center" style="width:130px;font-size:0.82rem;">Featured News</div>
+                    <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-0 ml-sm-3"
+                         style="min-width:0;flex:1;padding-right:90px;overflow:hidden;">
                         @foreach($featured as $item)
                         <div class="text-truncate">
                             <a class="text-white text-uppercase font-weight-semi-bold" href="/news/{{ $item->id }}">{{ $item->title }}</a>
@@ -143,7 +143,7 @@
         </div>
         <div class="row" style="justify-content:flex-start;">
             @foreach($departments as $dept)
-            <div class="col-md-4 col-lg mb-3" style="min-width:180px;">
+            <div class="col-6 col-md-4 col-lg mb-3">
                 <a href="/departments/{{ $dept->slug }}" class="text-decoration-none">
                     <div class="bg-white border p-3 h-100 text-center" style="color:#333; transition:box-shadow .2s;"
                          onmouseover="this.style.boxShadow='0 2px 10px rgba(26,79,138,.15)'"
@@ -327,51 +327,51 @@
                         <h4 class="m-0 text-uppercase font-weight-bold">Information</h4>
                     </div>
                     <div class="bg-white text-center border border-top-0 p-3">
-                        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                        <div class="d-flex align-items-center bg-white mb-3" style="min-height:110px;height:auto;">
                             <img class="img-fluid" src="/template/img/news-110x110-1.jpg" alt="">
-                            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">International Cooperation</a>
+                            <div class="w-100 px-3 d-flex flex-column justify-content-center border border-left-0" style="padding-top:8px;padding-bottom:8px;min-width:0;">
+                                <div class="mb-2" style="min-width:0;">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="" style="white-space:normal;word-break:break-word;display:inline-block;">International Cooperation</a>
                                     <a class="text-body" href=""><small>Jan 01, 2045</small></a>
                                 </div>
                                 <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href=""></a>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                        <div class="d-flex align-items-center bg-white mb-3" style="min-height:110px;height:auto;">
                             <img class="img-fluid" src="/template/img/news-110x110-2.jpg" alt="">
-                            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Scholarship</a>
+                            <div class="w-100 px-3 d-flex flex-column justify-content-center border border-left-0" style="padding-top:8px;padding-bottom:8px;min-width:0;">
+                                <div class="mb-2" style="min-width:0;">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="" style="white-space:normal;word-break:break-word;display:inline-block;">Scholarship</a>
                                     <a class="text-body" href=""><small>Jan 01, 2045</small></a>
                                 </div>
                                 <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href=""></a>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                        <div class="d-flex align-items-center bg-white mb-3" style="min-height:110px;height:auto;">
                             <img class="img-fluid" src="/template/img/news-110x110-3.jpg" alt="">
-                            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Graduation internship</a>
+                            <div class="w-100 px-3 d-flex flex-column justify-content-center border border-left-0" style="padding-top:8px;padding-bottom:8px;min-width:0;">
+                                <div class="mb-2" style="min-width:0;">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="" style="white-space:normal;word-break:break-word;display:inline-block;">Graduation internship</a>
                                     <a class="text-body" href=""><small>Jan 01, 2045</small></a>
                                 </div>
                                 <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href=""></a>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                        <div class="d-flex align-items-center bg-white mb-3" style="min-height:110px;height:auto;">
                             <img class="img-fluid" src="/template/img/news-110x110-4.jpg" alt="">
-                            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Student Club</a>
+                            <div class="w-100 px-3 d-flex flex-column justify-content-center border border-left-0" style="padding-top:8px;padding-bottom:8px;min-width:0;">
+                                <div class="mb-2" style="min-width:0;">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="" style="white-space:normal;word-break:break-word;display:inline-block;">Student Club</a>
                                     <a class="text-body" href=""><small>Jan 01, 2045</small></a>
                                 </div>
                                 <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href=""></a>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                        <div class="d-flex align-items-center bg-white mb-3" style="min-height:110px;height:auto;">
                             <img class="img-fluid" src="/template/img/news-110x110-5.jpg" alt="">
-                            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                                <div class="mb-2">
-                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Student support</a>
+                            <div class="w-100 px-3 d-flex flex-column justify-content-center border border-left-0" style="padding-top:8px;padding-bottom:8px;min-width:0;">
+                                <div class="mb-2" style="min-width:0;">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="" style="white-space:normal;word-break:break-word;display:inline-block;">Student support</a>
                                     <a class="text-body" href=""><small>Jan 01, 2045</small></a>
                                 </div>
                                 <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href=""></a>
@@ -387,23 +387,23 @@
                         <h4 class="m-0 text-uppercase font-weight-bold">Page Links</h4>
                     </div>
                     <div class="bg-white border border-top-0 p-3">
-                        <a href="https://accounts.google.com/signin" class="d-block w-100 text-white text-decoration-none mb-3" style="background: blue;">
-                            <i class="fas fa-envelope text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                            <span class="font-weight-larger" style="color: #ffffdd; text-transform: uppercase; font-weight:bolder">Email</span>
+                        <a href="https://accounts.google.com/signin" class="d-flex align-items-center w-100 text-white text-decoration-none mb-3" style="background:blue;">
+                            <i class="fas fa-envelope text-center py-4 mr-3 flex-shrink-0" style="width:65px;background:rgba(0,0,0,.2);"></i>
+                            <span style="color:#ffffdd;text-transform:uppercase;font-weight:bolder;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Email</span>
                         </a>
 
-                        <a href="http://dhtg.vpdttg.vn/" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #DC472E;">
-                            <i class="fas fa-mail-bulk text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                            <span class="font-weight-larger" style="color: #ffffdd; text-transform: uppercase; font-weight:bolder">Electronic Office</span>
+                        <a href="http://dhtg.vpdttg.vn/" class="d-flex align-items-center w-100 text-white text-decoration-none mb-3" style="background:#DC472E;">
+                            <i class="fas fa-mail-bulk text-center py-4 mr-3 flex-shrink-0" style="width:65px;background:rgba(0,0,0,.2);"></i>
+                            <span style="color:#ffffdd;text-transform:uppercase;font-weight:bolder;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Electronic Office</span>
                         </a>
 
-                        <a href="http://qldt.tgu.edu.vn/" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
-                            <i  class="fas fa-book-reader text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                            <span class="font-weight-larger" style="color: #ffffdd; text-transform: uppercase; font-weight:bolder">Training management</span>
+                        <a href="http://qldt.tgu.edu.vn/" class="d-flex align-items-center w-100 text-white text-decoration-none mb-3" style="background:#52AAF4;">
+                            <i class="fas fa-book-reader text-center py-4 mr-3 flex-shrink-0" style="width:65px;background:rgba(0,0,0,.2);"></i>
+                            <span style="color:#ffffdd;text-transform:uppercase;font-weight:bolder;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Training management</span>
                         </a>
-                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
-                            <i class="fas fa-university text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                            <span class="font-weight-larger" style="color: #ffffdd; text-transform: uppercase; font-weight:bolder">Library</span>
+                        <a href="" class="d-flex align-items-center w-100 text-white text-decoration-none mb-3" style="background:#C8359D;">
+                            <i class="fas fa-university text-center py-4 mr-3 flex-shrink-0" style="width:65px;background:rgba(0,0,0,.2);"></i>
+                            <span style="color:#ffffdd;text-transform:uppercase;font-weight:bolder;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Library</span>
                         </a>
                     </div>
                 </div>
